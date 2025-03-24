@@ -3,15 +3,7 @@ export default defineNuxtConfig({
     compatibilityDate: "2024-11-01",
     devtools: { enabled: true },
 
-    modules: [
-        // '@nuxt/content',
-        "@nuxt/eslint",
-        "@nuxt/fonts",
-        "@nuxt/image",
-        "@nuxt/test-utils",
-        "@nuxtjs/tailwindcss",
-        "shadcn-nuxt",
-    ],
+    modules: ["@nuxt/eslint", "@nuxt/fonts", "@nuxt/image", "@nuxt/test-utils", "@nuxtjs/tailwindcss", "shadcn-nuxt"],
 
     shadcn: {
         /**
@@ -23,5 +15,11 @@ export default defineNuxtConfig({
          * @default "./components/ui"
          */
         componentDir: "./components/ui",
+    },
+
+    vite: {
+        server: {
+            allowedHosts: ["quick-snail-free.ngrok-free.app"],
+        },
     },
 });

@@ -18,6 +18,8 @@ logs
 .fleet
 .idea
 .vscode
+.roo
+design_template
 
 # Local env files
 .env
