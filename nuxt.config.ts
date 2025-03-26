@@ -17,6 +17,12 @@ export default defineNuxtConfig({
         componentDir: "./components/ui",
     },
 
+    fonts: {
+        defaults: {
+            subsets: ["vietnamese", "latin-ext", "latin"],
+        },
+    },
+
     vite: {
         server: {
             allowedHosts: ["quick-snail-free.ngrok-free.app"],
