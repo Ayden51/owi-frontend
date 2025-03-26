@@ -4,6 +4,14 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
 
     modules: ["@nuxt/eslint", "@nuxt/fonts", "@nuxt/image", "@nuxt/test-utils", "@nuxtjs/tailwindcss", "shadcn-nuxt"],
+    components: {
+        dirs: [
+            {
+                path: "./components/wedding",
+                pathPrefix: false,
+            },
+        ],
+    },
 
     shadcn: {
         /**
@@ -21,6 +29,11 @@ export default defineNuxtConfig({
         defaults: {
             subsets: ["vietnamese", "latin-ext", "latin"],
         },
+    },
+
+    image: {
+        format: ["avif", "webp"],
+        quality: 100,
     },
 
     vite: {
