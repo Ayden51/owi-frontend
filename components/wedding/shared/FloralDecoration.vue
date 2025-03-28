@@ -1,37 +1,43 @@
 <template>
     <NuxtPicture
+        v-bind="$props"
         :src="imageUrl"
-        :alt="altText"
-        fit="contain"
         :class="cn('absolute z-0', positionClasses, props.class)"
         :style="positionStyles"
-        :loading="loading"
     />
 </template>
 
 <script setup lang="ts">
 import type { ImgHTMLAttributes } from "vue";
+import { NuxtPicture } from "#components";
+
 import { cn } from "@/lib/utils";
 
-interface Props {
-    imageName: string;
-    corner?: "top-left" | "top-right" | "bottom-left" | "bottom-right" | "none";
+type NuxtPictureProps = InstanceType<typeof NuxtPicture>["$props"];
+interface Props extends /* @vue-ignore */ NuxtPictureProps {
+    image: "floral-1" | "floral-2";
+    corner?: "top-left" | "top-right" | "bottom-right" | "bottom-left" | "none";
     offsetX?: string;
     offsetY?: string;
+    rotation?: string;
     class?: ImgHTMLAttributes["class"];
-    alt?: ImgHTMLAttributes["alt"];
-    loading?: ImgHTMLAttributes["loading"];
+    alt?: NuxtPictureProps["alt"];
+    loading?: NuxtPictureProps["loading"];
+    fit?: NuxtPictureProps["fit"];
 }
 
 const props = withDefaults(defineProps<Props>(), {
     corner: "top-left",
-    offsetX: "0px",
-    offsetY: "0px",
+    offsetX: "",
+    offsetY: "",
+    rotation: "",
+    class: "",
+    alt: "Ảnh trang trí hoa",
+    loading: "lazy",
+    fit: "contain",
 });
 
-const imageUrl = computed(() => `/images/floral/${props.imageName}.png`);
-const altText = props.alt ?? "Ảnh hoa trang trí";
-const loading = props.loading ?? "lazy";
+const imageUrl = computed(() => `/images/floral/${props.image}.png`);
 
 const positionClasses = computed(() => {
     switch (props.corner) {
@@ -48,11 +54,38 @@ const positionClasses = computed(() => {
     }
 });
 
-const positionStyles = computed(() => {
-    const styles: Record<string, string> = {};
-    if (props.corner !== "none") {
-        styles.transform = `translate(${props.offsetX}, ${props.offsetY})`;
+const stylesRotation = computed((): string => {
+    if (props.rotation !== "") return props.rotation;
+
+    switch (props.corner) {
+        case "top-right":
+            return "90deg";
+        case "bottom-right":
+            return "180deg";
+        case "bottom-left":
+            return "270deg";
+        case "top-left":
+        case "none":
+        default:
+            return "";
     }
-    return styles;
+});
+
+const positionStyles = computed(() => {
+    const transform: string[] = [];
+
+    if (props.offsetX !== "") {
+        transform.push(`translateX(${props.offsetX})`);
+    }
+
+    if (props.offsetY !== "") {
+        transform.push(`translateY(${props.offsetY})`);
+    }
+
+    if (stylesRotation.value !== "") {
+        transform.push(`rotate(${stylesRotation.value})`);
+    }
+
+    return { transform: transform.join(" ") };
 });
 </script>
