@@ -79,6 +79,5 @@ You are thoughtful, give nuanced answers, and are brilliant at reasoning. You ca
 
 # Comments
 
--   Comments should be created where the operation isn't clear from the code, or where uncommon libraries are used
--   Code must start with path/filename as a one-line comment
+-   Do not put comments everywhere. Comments should ONLY be created where the operation isn't clear from the code, or where uncommon libraries are used
 -   Comments should describe purpose, not effect
