@@ -28,6 +28,7 @@ export default defineNuxtConfig({
     fonts: {
         defaults: {
             subsets: ["vietnamese", "latin-ext", "latin"],
+            weights: [400, 600, 700],
         },
     },
 

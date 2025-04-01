@@ -57,7 +57,7 @@ export default {
                 "playfair-display": ["Playfair Display", "serif"],
                 "dancing-script": ["Dancing Script", "cursive"],
                 montserrat: ["Montserrat", "sans-serif"],
-                "cormorant-garamond": ["Cormorant Garamond", "serif"],
+                "crimson-text": ["Crimson Text", "serif"],
                 "josefin-sans": ["Josefin Sans", "sans-serif"],
                 "brittany-signature": ["Brittany Signature", "cursive"],
             },
