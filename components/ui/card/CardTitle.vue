@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
-import { cn } from '@/lib/utils'
+import type { HTMLAttributes } from "vue";
+import type { AsTag } from "reka-ui";
+import { cn } from "@/lib/utils";
 
-const props = defineProps<{
-  class?: HTMLAttributes['class']
-}>()
+interface Props {
+    class?: HTMLAttributes["class"];
+    as?: AsTag | Component;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    class: "",
+    as: "h3",
+});
 </script>
 
 <template>
-  <h3
-    :class="
-      cn('font-semibold leading-none tracking-tight', props.class)
-    "
-  >
-    <slot />
-  </h3>
+    <component :is="props.as" :class="cn('font-semibold leading-none tracking-tight', props.class)">
+        <slot />
+    </component>
 </template>
