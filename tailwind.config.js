@@ -1,3 +1,5 @@
+import { breakpoints } from "./utils";
+
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: ["class"],
@@ -62,6 +64,7 @@ export default {
                 "brittany-signature": ["Brittany Signature", "cursive"],
             },
         },
+        screens: breakpoints,
     },
     plugins: [require("tailwindcss-animate")],
 };
