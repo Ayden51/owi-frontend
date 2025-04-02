@@ -8,9 +8,8 @@
 
 <script setup lang="ts">
 import type { ImgHTMLAttributes } from "vue";
-import type { NuxtPicture } from "#components";
+import type { NuxtPictureProps } from "../types/wedding";
 
-type NuxtPictureProps = InstanceType<typeof NuxtPicture>["$props"];
 interface Props extends /* @vue-ignore */ NuxtPictureProps {
     image: "floral-1" | "floral-2";
     corner?: "top-left" | "top-right" | "bottom-right" | "bottom-left" | "none";
