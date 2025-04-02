@@ -1,12 +1,14 @@
 <template>
-    <NuxtPicture v-bind="$props" :src="imageUrl" :class="cn('absolute z-0', positionClasses, props.class)" />
+    <NuxtPicture
+        v-bind="$props"
+        :src="imageUrl"
+        :class="cn('absolute z-0 pointer-events-none', positionClasses, props.class)"
+    />
 </template>
 
 <script setup lang="ts">
 import type { ImgHTMLAttributes } from "vue";
-import { NuxtPicture } from "#components";
-
-import { cn } from "@/lib/utils";
+import type { NuxtPicture } from "#components";
 
 type NuxtPictureProps = InstanceType<typeof NuxtPicture>["$props"];
 interface Props extends /* @vue-ignore */ NuxtPictureProps {
