@@ -45,7 +45,7 @@ const data = computed(() => ({
 <template>
     <WebSection class="p-6 text-center bg-white text-primary-dark">
         <WebContainer>
-            <WeddingOrnament width="128" height="auto" class="mx-auto mb-2 fill-primary-dark" />
+            <WeddingOrnament width="128" class="mx-auto mb-2 fill-primary-dark" />
 
             <h2 class="mb-6 text-2xl font-semibold uppercase sm:text-3xl font-montserrat">
                 {{ data.title }}
