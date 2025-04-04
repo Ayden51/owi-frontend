@@ -13,6 +13,13 @@ export default defineNuxtConfig({
         ],
     },
 
+    nitro: {
+        prerender: {
+            crawlLinks: true,
+            routes: ["/"],
+        },
+    },
+
     shadcn: {
         /**
          * Prefix for all the imported component
@@ -33,8 +40,8 @@ export default defineNuxtConfig({
     },
 
     image: {
-        format: ["avif", "webp"],
-        quality: 100,
+        format: ["avif"],
+        quality: 80,
     },
 
     vite: {
