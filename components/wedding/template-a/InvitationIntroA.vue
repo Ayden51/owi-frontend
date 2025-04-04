@@ -44,7 +44,7 @@ const data = computed(() => ({
 const img = useImage();
 
 const sectionStyles = computed(() => {
-    const imgUrl = img("/images/background/background-1.png", { quality: 100, format: "webp" });
+    const imgUrl = img("/images/background/background-1.png", { quality: 100, format: "webp", preload: true });
 
     return { background: `url('${imgUrl}') center center / cover no-repeat` };
 });
@@ -59,11 +59,14 @@ const sectionStyles = computed(() => {
                     corner="top-left"
                     image="floral-1"
                     class="-translate-x-8 -translate-y-8 w-36 sm:w-48 sm:-translate-x-10 sm:-translate-y-10"
+                    :preload="true"
+                    loading="eager"
                 />
                 <FloralDecoration
                     corner="top-right"
                     image="floral-1"
                     class="translate-x-8 -translate-y-8 w-36 sm:w-48 sm:translate-x-10 sm:-translate-y-10"
+                    loading="eager"
                 />
 
                 <CardHeader class="py-12 sm:p-12 gap-y-4">
@@ -108,7 +111,12 @@ const sectionStyles = computed(() => {
                         <template v-for="(image, index) in data.images" :key="index">
                             <AspectRatioPicture
                                 :ratio="{ ratio: 3 / 4 }"
-                                :picture="{ src: image.src, alt: image.alt || 'Couple Photo', loading: 'eager' }"
+                                :picture="{
+                                    src: image.src,
+                                    alt: image.alt || 'Couple Photo',
+                                    loading: 'eager',
+                                    preload: true,
+                                }"
                             />
                         </template>
                     </div>
@@ -132,11 +140,13 @@ const sectionStyles = computed(() => {
                     corner="bottom-left"
                     image="floral-1"
                     class="-translate-x-8 translate-y-8 w-36 sm:w-48 sm:-translate-x-10 sm:translate-y-10"
+                    loading="eager"
                 />
                 <FloralDecoration
                     corner="bottom-right"
                     image="floral-1"
                     class="translate-x-8 translate-y-8 w-36 sm:w-48 sm:translate-x-10 sm:translate-y-10"
+                    loading="eager"
                 />
             </Card>
         </WebContainer>
