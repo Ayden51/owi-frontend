@@ -43,10 +43,4 @@ export default defineNuxtConfig({
         format: ["avif"],
         quality: 80,
     },
-
-    vite: {
-        server: {
-            allowedHosts: ["quick-snail-free.ngrok-free.app"],
-        },
-    },
 });
