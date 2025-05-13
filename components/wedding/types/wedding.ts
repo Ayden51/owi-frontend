@@ -55,11 +55,11 @@ export interface MapDetail {
     embedUrl?: string;
 }
 export interface EventDetailsData {
-    title?: string;
-    groomEvent: EventDetail;
-    brideEvent: EventDetail;
-    groomMap: MapDetail;
-    brideMap: MapDetail;
+    title?: string | null;
+    groomEvent?: EventDetail | null;
+    brideEvent?: EventDetail | null;
+    groomMap?: MapDetail | null;
+    brideMap?: MapDetail | null;
 }
 
 export interface GiftPersonDetail {

@@ -41,16 +41,18 @@ const defaultData: EventDetailsData = {
 const data = computed(() => ({
     ...defaultData,
     ...props.data,
-    groomEvent: { ...defaultData.groomEvent, ...props.data?.groomEvent },
-    brideEvent: { ...defaultData.brideEvent, ...props.data?.brideEvent },
-    groomMap: { ...defaultData.groomMap, ...props.data?.groomMap },
-    brideMap: { ...defaultData.brideMap, ...props.data?.brideMap },
+    groomEvent: processSubProperty(defaultData.groomEvent!, props.data?.groomEvent),
+    brideEvent: processSubProperty(defaultData.brideEvent!, props.data?.brideEvent),
+    groomMap: processSubProperty(defaultData.groomMap!, props.data?.groomMap),
+    brideMap: processSubProperty(defaultData.brideMap!, props.data?.brideMap),
 }));
 </script>
 
 <template>
     <WebSection class="p-6 bg-white">
         <WebContainer>
+            <slot name="beforeStart" />
+
             <div class="grid items-center justify-center grid-cols-5 gap-4 mt-2 mb-6 sm:grid-cols-4">
                 <NuxtPicture
                     src="/images/mics/stars-1.png"
@@ -71,47 +73,61 @@ const data = computed(() => ({
                 />
             </div>
 
+            <slot name="afterTitle" />
+
             <!-- Add padding-left for icon space -->
-            <div class="relative max-w-lg pl-12 mx-auto mb-12 sm:pl-14">
-                <div
-                    class="absolute left-4 sm:left-[1.125rem] top-0 h-full w-0.5 bg-primary opacity-50 -translate-x-1/2"
-                />
-
-                <div v-for="(event, index) in [data.groomEvent, data.brideEvent]" :key="index" class="relative mb-8">
+            <template v-if="data.groomEvent && data.brideEvent">
+                <div class="relative max-w-lg pl-12 mx-auto mb-12 sm:pl-14">
                     <div
-                        class="absolute top-0 flex items-center justify-center w-8 h-8 rounded-full sm:w-9 sm:h-9 -left-12 sm:-left-14 bg-primary text-primary-foreground"
-                    >
-                        <component :is="event.icon" :size="16" />
-                    </div>
-                    <h3 class="mb-1 text-2xl font-semibold sm:text-3xl font-dancing-script">
-                        {{ event.title }}
-                    </h3>
-                    <p class="mb-1 text-sm sm:text-base font-montserrat text-primary-dark">
-                        {{ event.time }} | {{ event.date }}
-                    </p>
-                    <p class="text-sm sm:text-base font-montserrat text-primary-dark">
-                        {{ event.address }}
-                    </p>
-                </div>
-            </div>
-
-            <div v-for="(map, index) in [data.groomMap, data.brideMap]" :key="index" class="mt-6 text-center">
-                <h3 class="mb-2 text-2xl sm:text-3xl font-dancing-script">
-                    {{ map.title }}
-                </h3>
-                <p class="mb-4 text-sm sm:text-base font-montserrat text-primary-dark">{{ map.address }}</p>
-                <AspectRatio :ratio="4 / 3">
-                    <iframe
-                        :src="map.embedUrl"
-                        width="400"
-                        height="300"
-                        allow="fullscreen"
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="w-full h-full"
+                        class="absolute left-4 sm:left-[1.125rem] top-0 h-full w-0.5 bg-primary opacity-50 -translate-x-1/2"
                     />
-                </AspectRatio>
-            </div>
+
+                    <div
+                        v-for="(event, index) in [data.groomEvent, data.brideEvent]"
+                        :key="index"
+                        class="relative mb-8"
+                    >
+                        <div
+                            class="absolute top-0 flex items-center justify-center w-8 h-8 rounded-full sm:w-9 sm:h-9 -left-12 sm:-left-14 bg-primary text-primary-foreground"
+                        >
+                            <component :is="event.icon" :size="16" />
+                        </div>
+                        <h3 class="mb-1 text-2xl font-semibold sm:text-3xl font-dancing-script">
+                            {{ event.title }}
+                        </h3>
+                        <p class="mb-1 text-sm sm:text-base font-montserrat text-primary-dark">
+                            {{ event.time }} | {{ event.date }}
+                        </p>
+                        <p class="text-sm sm:text-base font-montserrat text-primary-dark">
+                            {{ event.address }}
+                        </p>
+                    </div>
+                </div>
+            </template>
+
+            <slot name="afterEvent" />
+
+            <template v-if="data.groomMap && data.brideMap">
+                <div v-for="(map, index) in [data.groomMap, data.brideMap]" :key="index" class="mt-6 text-center">
+                    <h3 class="mb-2 text-2xl sm:text-3xl font-dancing-script">
+                        {{ map.title }}
+                    </h3>
+                    <p class="mb-4 text-sm sm:text-base font-montserrat text-primary-dark">{{ map.address }}</p>
+                    <AspectRatio :ratio="4 / 3">
+                        <iframe
+                            :src="map.embedUrl"
+                            width="400"
+                            height="300"
+                            allow="fullscreen"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full h-full"
+                        />
+                    </AspectRatio>
+                </div>
+            </template>
+
+            <slot name="afterEnd" />
         </WebContainer>
     </WebSection>
 </template>
