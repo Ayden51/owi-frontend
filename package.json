@@ -22,6 +22,7 @@
         "eslint": "^9.23.0",
         "lucide-vue-next": "^0.484.0",
         "nuxt": "^3.16.1",
+        "nuxt-easy-lightbox": "1.0.2",
         "reka-ui": "^2.1.1",
         "shadcn-nuxt": "1.0.3",
         "tailwind-merge": "^3.0.2",

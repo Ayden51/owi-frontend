@@ -13,6 +13,7 @@ export default defineNuxtConfig({
         "@nuxtjs/tailwindcss",
         "shadcn-nuxt",
         "@vueuse/motion/nuxt",
+        "nuxt-easy-lightbox",
     ],
     components: {
         dirs: [
