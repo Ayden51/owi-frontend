@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { UtensilsCrossed } from "lucide-vue-next";
-import type { EventDetailsData } from "../types/wedding";
+import type { EventDetailsData } from "@/components/wedding/types";
 
 const props = defineProps<{
     data: EventDetailsData;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CircleArrowLeft, CircleArrowRight } from "lucide-vue-next";
-import type { GiftInfoData } from "../types/wedding";
+import type { GiftInfoData } from "@/components/wedding/types";
 
 const props = defineProps<{
     data: GiftInfoData;

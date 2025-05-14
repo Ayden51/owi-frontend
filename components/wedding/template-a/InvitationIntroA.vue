@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CircleArrowUp } from "lucide-vue-next";
-import type { InvitationData } from "../types/wedding";
+import type { InvitationData } from "@/components/wedding/types";
 
 const props = defineProps<{
     data: InvitationData;

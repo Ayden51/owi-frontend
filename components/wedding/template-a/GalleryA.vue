@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { GalleryData } from "../types/wedding";
+import type { GalleryData } from "@/components/wedding/types";
+import { cn, removeKeysFromProps } from "@/utils";
 
 const props = defineProps<{
     data: GalleryData;

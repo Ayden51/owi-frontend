@@ -7,7 +7,7 @@ import type {
     MessageData,
     SaveTheDateData,
     ThankYouData,
-} from "../components/wedding/types/wedding";
+} from "@/components/wedding/types";
 
 // Initialize with empty objects or default structures matching the interfaces
 const invitationData = ref<InvitationData>({ groom: {}, bride: {} });

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ThankYouData } from "../types/wedding";
+import type { ThankYouData } from "@/components/wedding/types";
 
 const props = defineProps<{
     data: ThankYouData;

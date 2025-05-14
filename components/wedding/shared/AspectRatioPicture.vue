@@ -11,7 +11,8 @@
 
 <script setup lang="ts">
 import type { AspectRatioProps } from "reka-ui";
-import type { NuxtPictureProps } from "../types/wedding";
+import type { NuxtPictureProps } from "@/components/wedding/types";
+import { removeKeysFromProps } from "@/utils";
 
 interface Props {
     ratio: AspectRatioProps;

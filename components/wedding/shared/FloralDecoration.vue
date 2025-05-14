@@ -8,7 +8,8 @@
 
 <script setup lang="ts">
 import type { ImgHTMLAttributes } from "vue";
-import type { NuxtPictureProps } from "../types/wedding";
+import type { NuxtPictureProps } from "@/components/wedding/types";
+import { cn } from "@/utils";
 
 interface Props extends /* @vue-ignore */ NuxtPictureProps {
     image: "floral-1" | "floral-2";

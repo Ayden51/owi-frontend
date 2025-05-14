@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MessageData } from "../types/wedding";
+import type { MessageData } from "@/components/wedding/types";
 
 const props = defineProps<{
     data: MessageData;

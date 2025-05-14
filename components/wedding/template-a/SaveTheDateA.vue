@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SaveTheDateData } from "../types/wedding";
+import type { SaveTheDateData } from "@/components/wedding/types";
 
 const props = defineProps<{
     data?: SaveTheDateData;

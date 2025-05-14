@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from "vue";
 import type { AsTag } from "reka-ui";
+import { cn } from "@/utils";
 
 interface Props {
     class?: HTMLAttributes["class"];
