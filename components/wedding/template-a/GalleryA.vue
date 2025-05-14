@@ -69,15 +69,21 @@ const onHide = () => (visibleRef.value = false);
             </h2>
 
             <div v-motion-w-fade-up :delay="300" class="columns-2 sm:columns-3 gap-x-2">
-                <NuxtPicture
-                    v-for="(image, imgIndex) in data.images"
-                    :key="imgIndex"
-                    :placeholder="[image.width, image.height, 30, 5]"
-                    :img-attrs="{ ...image.imgAttrs, class: cn('h-auto w-full mb-2', image.imgAttrs?.class ?? '') }"
-                    loading="lazy"
-                    v-bind="removeKeysFromProps(image, 'imgAttrs')"
-                    @click="() => showImg(imgIndex)"
-                />
+                <div v-for="(image, imgIndex) in data.images" :key="imgIndex" class="mb-2 overflow-hidden">
+                    <NuxtPicture
+                        :placeholder="[image.width, image.height, 30, 5]"
+                        :img-attrs="{
+                            ...image.imgAttrs,
+                            class: cn(
+                                'w-full h-auto transition-transform duration-500 hover:scale-110',
+                                image.imgAttrs?.class ?? ''
+                            ),
+                        }"
+                        loading="lazy"
+                        v-bind="removeKeysFromProps(image, 'imgAttrs')"
+                        @click="() => showImg(imgIndex)"
+                    />
+                </div>
             </div>
         </WebContainer>
 
