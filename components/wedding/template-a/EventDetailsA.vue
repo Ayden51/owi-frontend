@@ -55,17 +55,22 @@ const data = computed(() => ({
 
             <div class="grid items-center justify-center grid-cols-5 gap-4 mt-2 mb-6 sm:grid-cols-4">
                 <NuxtPicture
+                    v-motion-w-fade-right
                     src="/images/mics/stars-1.png"
                     alt="Wedding star decoration"
                     loading="lazy"
                     class="w-6 h-6 ms-auto sm:w-8 sm:h-8"
                 />
                 <h2
+                    v-motion-w-fade-down
+                    :delay="100"
                     class="col-span-3 text-3xl text-center sm:text-4xl font-brittany-signature text-primary-dark sm:col-span-2"
                 >
                     {{ data.title }}
                 </h2>
                 <NuxtPicture
+                    v-motion-w-fade-left
+                    :delay="200"
                     src="/images/mics/stars-1.png"
                     alt="Wedding star decoration"
                     loading="lazy"
@@ -79,6 +84,8 @@ const data = computed(() => ({
             <template v-if="data.groomEvent && data.brideEvent">
                 <div class="relative max-w-lg pl-12 mx-auto mb-12 sm:pl-14">
                     <div
+                        v-motion-w-fade-up
+                        :delay="300"
                         class="absolute left-4 sm:left-[1.125rem] top-0 h-full w-0.5 bg-primary opacity-50 -translate-x-1/2"
                     />
 
@@ -88,17 +95,31 @@ const data = computed(() => ({
                         class="relative mb-8"
                     >
                         <div
+                            v-motion-w-fade-up
+                            :delay="400 + index * 100"
                             class="absolute top-0 flex items-center justify-center w-8 h-8 rounded-full sm:w-9 sm:h-9 -left-12 sm:-left-14 bg-primary text-primary-foreground"
                         >
                             <component :is="event.icon" :size="16" />
                         </div>
-                        <h3 class="mb-1 text-2xl font-semibold sm:text-3xl font-dancing-script">
+                        <h3
+                            v-motion-w-fade-right
+                            :delay="500 + index * 100"
+                            class="mb-1 text-2xl font-semibold sm:text-3xl font-dancing-script"
+                        >
                             {{ event.title }}
                         </h3>
-                        <p class="mb-1 text-sm sm:text-base font-montserrat text-primary-dark">
+                        <p
+                            v-motion-w-fade-right
+                            :delay="600 + index * 100"
+                            class="mb-1 text-sm sm:text-base font-montserrat text-primary-dark"
+                        >
                             {{ event.time }} | {{ event.date }}
                         </p>
-                        <p class="text-sm sm:text-base font-montserrat text-primary-dark">
+                        <p
+                            v-motion-w-fade-right
+                            :delay="700 + index * 100"
+                            class="text-sm sm:text-base font-montserrat text-primary-dark"
+                        >
                             {{ event.address }}
                         </p>
                     </div>
@@ -108,7 +129,13 @@ const data = computed(() => ({
             <slot name="afterEvent" />
 
             <template v-if="data.groomMap && data.brideMap">
-                <div v-for="(map, index) in [data.groomMap, data.brideMap]" :key="index" class="mt-6 text-center">
+                <div
+                    v-for="(map, index) in [data.groomMap, data.brideMap]"
+                    :key="index"
+                    v-motion-w-fade-up
+                    :delay="400 + index * 100"
+                    class="mt-6 text-center"
+                >
                     <h3 class="mb-2 text-2xl sm:text-3xl font-dancing-script">
                         {{ map.title }}
                     </h3>

@@ -36,13 +36,19 @@ const sectionStyles = computed(() => {
             <Card class="bg-white">
                 <CardHeader class="items-center gap-1 p-4">
                     <NuxtPicture
+                        v-motion-w-fade-down
                         :src="data.topDecorationImageUrl"
                         alt="Decoration"
                         class="w-10 h-10 sm:w-16 sm:h-16"
                         loading="lazy"
                         fit="contain"
                     />
-                    <CardTitle as="h2" class="text-2xl font-bold sm:text-4xl font-dancing-script">
+                    <CardTitle
+                        v-motion-w-fade-up
+                        :delay="200"
+                        as="h2"
+                        class="text-2xl font-bold sm:text-4xl font-dancing-script"
+                    >
                         {{ data.title }}
                     </CardTitle>
                 </CardHeader>
@@ -51,6 +57,8 @@ const sectionStyles = computed(() => {
                     <p
                         v-for="(paragraph, index) in [data.paragraph1, data.paragraph2]"
                         :key="index"
+                        v-motion-w-fade-up
+                        :delay="300 + index * 100"
                         class="mb-2 text-base leading-relaxed sm:text-lg font-crimson-text text-primary-dark"
                     >
                         {{ paragraph }}

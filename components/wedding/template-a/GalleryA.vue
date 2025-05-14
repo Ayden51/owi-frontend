@@ -47,13 +47,17 @@ const data = computed(() => ({
 <template>
     <WebSection class="p-6 text-center bg-white text-primary-dark">
         <WebContainer class="">
-            <WeddingOrnament width="128" class="mx-auto mb-2 fill-primary-dark" />
+            <WeddingOrnament v-motion-w-fade-down width="128" class="mx-auto mb-2 fill-primary-dark" />
 
-            <h2 class="mb-6 text-2xl font-semibold uppercase sm:text-3xl font-montserrat">
+            <h2
+                v-motion-w-fade-down
+                :delay="100"
+                class="mb-6 text-2xl font-semibold uppercase sm:text-3xl font-montserrat"
+            >
                 {{ data.title }}
             </h2>
 
-            <div class="columns-2 sm:columns-3 gap-x-2">
+            <div v-motion-w-fade-up :delay="300" class="columns-2 sm:columns-3 gap-x-2">
                 <NuxtPicture
                     v-for="(image, imgIndex) in data.images"
                     :key="imgIndex"

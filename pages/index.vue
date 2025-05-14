@@ -62,7 +62,7 @@ const thankYouData = ref<ThankYouData>({}); // OK as is, all properties are opti
         <MessageA :data="messageData" />
         <EventDetailsA :data="eventDetailsData">
             <template #afterEnd>
-                <div class="flex items-center justify-center mt-6">
+                <div v-motion-w-fade-down :delay="900" class="flex items-center justify-center mt-6">
                     <NuxtImg
                         src="/images/mics/continental-hotel-saigon-logo.png"
                         alt="Continental Hotel Saigon Logo"

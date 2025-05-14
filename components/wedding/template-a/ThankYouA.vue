@@ -31,14 +31,25 @@ const data = computed(() => ({
                 :img-attrs="{ class: 'w-full h-full' }"
             />
             <!-- Top Floral Decorations -->
-            <FloralDecoration corner="top-left" image="floral-1" class="w-32 sm:w-48" />
-            <FloralDecoration corner="top-right" image="floral-1" class="w-32 sm:w-48" />
-            <h2
-                class="absolute w-full text-5xl text-center -translate-x-1/2 font-brittany-signature top-20 sm:top-36 left-1/2 text-primary-dark sm:text-7xl"
-            >
-                {{ data.thankYouText }}
-            </h2>
+            <Motion is="div" v-motion-w-fade-right class="absolute inset-0 pointer-events-none">
+                <FloralDecoration corner="top-left" image="floral-1" class="w-32 sm:w-48" />
+            </Motion>
+
+            <Motion is="div" v-motion-w-fade-left :delay="200" class="absolute inset-0 pointer-events-none">
+                <FloralDecoration corner="top-right" image="floral-1" class="w-32 sm:w-48" />
+            </Motion>
+
+            <Motion is="div" v-motion-w-fade-down :delay="300" class="absolute inset-0 pointer-events-none">
+                <h2
+                    class="absolute w-full text-5xl text-center -translate-x-1/2 font-brittany-signature top-20 sm:top-36 left-1/2 text-primary-dark sm:text-7xl"
+                >
+                    {{ data.thankYouText }}
+                </h2>
+            </Motion>
+
             <NuxtPicture
+                v-motion-w-fade-up
+                :delay="400"
                 :src="data.illustrationUrl"
                 :alt="data.illustrationAlt"
                 class="absolute left-0 right-0 mx-auto pointer-events-none -bottom-20 sm:-bottom-32"
