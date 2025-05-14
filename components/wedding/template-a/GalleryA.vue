@@ -42,6 +42,16 @@ const data = computed(() => ({
     ...props.data,
     images: props.data?.images?.length > 0 ? props.data.images : defaultData.images,
 }));
+
+const visibleRef = ref(false);
+const indexRef = ref(0);
+
+const showImg = (index: number) => {
+    indexRef.value = index;
+    visibleRef.value = true;
+};
+
+const onHide = () => (visibleRef.value = false);
 </script>
 
 <template>
@@ -65,8 +75,11 @@ const data = computed(() => ({
                     :img-attrs="{ ...image.imgAttrs, class: cn('h-auto w-full mb-2', image.imgAttrs?.class ?? '') }"
                     loading="lazy"
                     v-bind="removeKeysFromProps(image, 'imgAttrs')"
+                    @click="() => showImg(imgIndex)"
                 />
             </div>
         </WebContainer>
+
+        <VueEasyLightbox :visible="visibleRef" :imgs="data.images" :index="indexRef" @hide="onHide" />
     </WebSection>
 </template>
