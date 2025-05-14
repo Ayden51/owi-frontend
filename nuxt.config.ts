@@ -1,3 +1,5 @@
+import { motionDirectives } from "./utils";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: "2024-11-01",
@@ -50,5 +52,14 @@ export default defineNuxtConfig({
     image: {
         format: ["avif"],
         quality: 80,
+    },
+
+    runtimeConfig: {
+        public: {
+            motion: {
+                // @ts-expect-error This way of importing motion directives still works
+                directives: motionDirectives,
+            },
+        },
     },
 });
