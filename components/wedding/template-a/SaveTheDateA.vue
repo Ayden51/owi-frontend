@@ -11,15 +11,15 @@ const defaultData: SaveTheDateData = {
     sectionTitle: "Save The Date",
     introText1: "PLEASE JOIN US FOR",
     introText2: "The wedding of",
-    groomName: "Công Thành",
-    brideName: "Anh Thư",
+    groomName: "Nguyễn Văn A",
+    brideName: "Trần Thị B",
     date: {
-        dayName: "Thứ 7",
-        month: "Tháng 10",
-        day: "27",
-        year: "2018",
+        dayName: "Thứ Bảy",
+        month: "Tháng 12",
+        day: "31",
+        year: "2024",
     },
-    lunarDateText: "(Tức ngày 19 tháng 9 năm Mậu Tuất)",
+    lunarDateText: "(Tức ngày XX tháng YY năm Giáp Thìn)",
     outroText: "Reception to follow",
 };
 

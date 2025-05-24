@@ -7,7 +7,7 @@ const props = defineProps<{
 
 // Default data (for development/preview, API should provide real data)
 const defaultData: MessageData = {
-    topDecorationImageUrl: "/images/mics/wedding-bells-1.png", // Replace with actual default image path from design
+    topDecorationImageUrl: "/images/mics/wedding-bells-1.png",
     title: "We are Getting Married",
     paragraph1:
         "Thật vui vì được gặp và đón tiếp các bạn trong một dịp đặc biệt như đám cưới của chúng tôi. Chúng tôi muốn gửi đến bạn những lời cảm ơn sâu sắc nhất và để bạn biết chúng tôi rất hạnh phúc khi thấy bạn ở đó. Cảm ơn các bạn rất nhiều vì sự hiện diện cùng những lời chúc tốt đẹp mà bạn đã dành cho chúng tôi!",

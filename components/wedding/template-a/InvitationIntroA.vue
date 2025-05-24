@@ -12,15 +12,20 @@ const defaultData: InvitationData = {
     introText: "Trân trọng kính mời tới dự hôn lễ của hai chúng tôi!",
     groom: {
         sideLabel: "Nhà trai",
-        name: "Nguyễn Công Thành",
-        father: "Nguyễn Công Thịnh",
-        mother: "Đặng Thị Ánh Nguyệt",
+        name: "Nguyễn Văn A",
+        father: "Ông Nguyễn Văn B",
+        mother: "Bà Trần Thị C",
     },
-    bride: { sideLabel: "Nhà gái", name: "Phạm Thị Anh Thư", father: "Phạm Văn Thành", mother: "Phạm Thị Muối" },
+    bride: {
+        sideLabel: "Nhà gái",
+        name: "Trần Thị D",
+        father: "Ông Lê Văn E",
+        mother: "Bà Phạm Thị F",
+    },
     images: [
-        { src: "/images/gallery/intro-1.jpg", alt: "Couple Photo 1" }, // Replace with actual image paths from design
-        { src: "/images/gallery/intro-2.jpg", alt: "Couple Photo 2" },
-        { src: "/images/gallery/intro-3.jpg", alt: "Couple Photo 3" },
+        { src: "/images/gallery/intro-1.jpg", alt: "Ảnh Cặp Đôi 1" },
+        { src: "/images/gallery/intro-2.jpg", alt: "Ảnh Cặp Đôi 2" },
+        { src: "/images/gallery/intro-3.jpg", alt: "Ảnh Cặp Đôi 3" },
     ],
     navHints: [
         { label: "Lịch tổ chức", slug: "#lich-to-chuc" },

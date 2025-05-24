@@ -7,10 +7,10 @@ const props = defineProps<{
 
 // Default data (for development/preview, API should provide real data)
 const defaultData: ThankYouData = {
-    backgroundImageUrl: "/images/background/background-2.png", // Example background from plan
+    backgroundImageUrl: "/images/background/background-2.png",
     thankYouText: "Thank You!",
-    illustrationUrl: "/images/bride-groom/bride-groom-1.png", // Updated illustration path
-    illustrationAlt: "Couple Illustration",
+    illustrationUrl: "/images/bride-groom/bride-groom-1.png",
+    illustrationAlt: "Hình minh họa cặp đôi",
 };
 
 // Use provided data merged with defaults

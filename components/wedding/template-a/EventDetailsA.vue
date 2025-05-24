@@ -10,30 +10,30 @@ const props = defineProps<{
 const defaultData: EventDetailsData = {
     title: "Wedding Day",
     groomEvent: {
-        title: "Welcome Drink and BRIDE & GROOM photograph",
-        time: "17h - 18h30",
-        date: "27/10/2018",
-        address: "Tại Sảnh Continental Patio",
+        title: "Tiệc cưới nhà trai",
+        time: "17h00 - 18h30",
+        date: "Ngày XX/YY/ZZZZ",
+        address: "Địa chỉ nhà trai",
         icon: UtensilsCrossed,
     },
     brideEvent: {
-        title: "Primary Meal",
-        time: '18h30 - "Until The Time Is Through"',
-        date: "27/10/2018",
-        address: "Continental Hotel Saigon, Quận 1, TP.HCM",
+        title: "Tiệc cưới nhà gái",
+        time: "18h30 - 21h00",
+        date: "Ngày XX/YY/ZZZZ",
+        address: "Địa chỉ nhà gái",
         icon: UtensilsCrossed,
     },
     groomMap: {
         title: "Địa chỉ nhà trai",
-        address: "132-134 Đồng Khởi, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+        address: "Số nhà, Đường, Phường, Quận, TP. Hồ Chí Minh",
         embedUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.441698161218!2d106.70112384107864!3d10.777442948482655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f48098c0da3%3A0x71bd0afc663e612e!2sHotel%20Continental%20Saigon!5e0!3m2!1svi!2s!4v1743489900707!5m2!1svi!2s",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.129631412526!2d106.71789951139111!3d10.801382258686925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752954601a59e7%3A0xef2bd57d27c593f7!2sCong%20Thanh%20Phat%20Group!5e0!3m2!1svi!2s!4v1748072909375!5m2!1svi!2s",
     },
     brideMap: {
         title: "Địa chỉ nhà gái",
-        address: "72/53 Nguyễn Văn Thương, Phường 25, Quận Bình Thạnh, TP. Hồ Chí Minh",
+        address: "Số nhà, Đường, Phường, Quận, TP. Hồ Chí Minh",
         embedUrl:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.129700178137!2d106.71789951144015!3d10.801376989304458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752954601a59e7%3A0xef2bd57d27c593f7!2sCong%20Thanh%20Phat%20Group!5e0!3m2!1svi!2s!4v1743492212889!5m2!1svi!2s",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.129631412526!2d106.71789951139111!3d10.801382258686925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752954601a59e7%3A0xef2bd57d27c593f7!2sCong%20Thanh%20Phat%20Group!5e0!3m2!1svi!2s!4v1748072909375!5m2!1svi!2s",
     },
 };
 
