@@ -27,6 +27,12 @@ export default defineNuxtConfig({
     routeRules: {
         "/**": { swr: true },
     },
+    // nitro: {
+    //     prerender: {
+    //         crawlLinks: true,
+    //         routes: ["/"],
+    //     },
+    // },
 
     shadcn: {
         /**
