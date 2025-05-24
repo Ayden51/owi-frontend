@@ -18,7 +18,7 @@ export interface InvitationData {
         father?: string;
         mother?: string;
     };
-    images?: { src: string; alt?: string }[];
+    images?: NuxtPictureProps[];
     navHints?: { label: string; slug: string }[];
     finalText?: string;
 }
@@ -50,9 +50,10 @@ export interface EventDetail {
     icon?: LucideIcon;
 }
 export interface MapDetail {
-    title?: string;
-    address?: string;
-    embedUrl?: string;
+    title?: string | null;
+    address?: string | null;
+    embedUrl?: string | null;
+    logo?: NuxtPictureProps | null;
 }
 export interface EventDetailsData {
     title?: string | null;

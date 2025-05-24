@@ -14,17 +14,19 @@ const invitationData = ref<InvitationData>({ groom: {}, bride: {} });
 const saveTheDateData = ref<SaveTheDateData>({ date: {} });
 const messageData = ref<MessageData>({}); // OK as is, no required nested objects
 const eventDetailsData = ref<EventDetailsData>({
-    groomEvent: {
-        title: "Welcome Drink and BRIDE & GROOM photograph",
-        time: "17h - 18h30",
-        address: "Tại Sảnh Continental Patio",
+    groomMap: {
+        title: null,
+        logo: {
+            src: "/images/mics/continental-hotel-saigon-logo.png",
+            alt: "Continental Hotel Saigon Logo",
+            loading: "lazy",
+            width: 3839,
+            height: 2145,
+            quality: 100,
+            densities: "x1",
+            class: "w-64",
+        },
     },
-    brideEvent: {
-        title: "Primary Meal",
-        time: '18h30 - "Until The Time Is Through"',
-        address: "Continental Hotel Saigon, Quận 1, TP.HCM",
-    },
-    groomMap: null,
     brideMap: null,
 });
 const giftInfoData = ref<GiftInfoData>({ groom: {}, bride: {} });
@@ -60,22 +62,7 @@ const thankYouData = ref<ThankYouData>({}); // OK as is, all properties are opti
         <InvitationIntroA :data="invitationData" />
         <SaveTheDateA :data="saveTheDateData" />
         <MessageA :data="messageData" />
-        <EventDetailsA :data="eventDetailsData">
-            <template #afterEnd>
-                <div v-motion-w-fade-down :delay="900" class="flex items-center justify-center mt-6">
-                    <NuxtImg
-                        src="/images/mics/continental-hotel-saigon-logo.png"
-                        alt="Continental Hotel Saigon Logo"
-                        loading="lazy"
-                        width="3839"
-                        height="2145"
-                        quality="100"
-                        densities="x1"
-                        class="w-64"
-                    />
-                </div>
-            </template>
-        </EventDetailsA>
+        <EventDetailsA :data="eventDetailsData" />
         <GiftInfoA :data="giftInfoData" />
         <GalleryA :data="galleryData" />
         <ThankYouA :data="thankYouData" />

@@ -10,17 +10,17 @@ const props = defineProps<{
 const defaultData: EventDetailsData = {
     title: "Wedding Day",
     groomEvent: {
-        title: "Tiệc cưới nhà trai",
-        time: "17h-18h pm",
+        title: "Welcome Drink and BRIDE & GROOM photograph",
+        time: "17h - 18h30",
         date: "27/10/2018",
-        address: "Tại Sảnh Continental Patio, Continental Hotel, Quận 1, TP. Hồ Chí Minh",
+        address: "Tại Sảnh Continental Patio",
         icon: UtensilsCrossed,
     },
     brideEvent: {
-        title: "Tiệc cưới nhà gái",
-        time: "9h-10h am",
+        title: "Primary Meal",
+        time: '18h30 - "Until The Time Is Through"',
         date: "27/10/2018",
-        address: "Tại tư gia, Phường 25, Quận Bình Thạnh, TP. Hồ Chí Minh",
+        address: "Continental Hotel Saigon, Quận 1, TP.HCM",
         icon: UtensilsCrossed,
     },
     groomMap: {
@@ -53,7 +53,7 @@ const data = computed(() => ({
         <WebContainer>
             <slot name="beforeStart" />
 
-            <div class="grid items-center justify-center grid-cols-5 gap-4 mt-2 mb-6 sm:grid-cols-4">
+            <div v-if="data.title" class="grid items-center justify-center grid-cols-5 gap-4 mt-2 mb-6 sm:grid-cols-4">
                 <NuxtPicture
                     v-motion-w-fade-right
                     src="/images/mics/stars-1.png"
@@ -89,60 +89,80 @@ const data = computed(() => ({
                         class="absolute left-4 sm:left-[1.125rem] top-0 h-full w-0.5 bg-primary opacity-50 -translate-x-1/2"
                     />
 
-                    <div
-                        v-for="(event, index) in [data.groomEvent, data.brideEvent]"
-                        :key="index"
-                        class="relative mb-8"
-                    >
+                    <template v-if="data.groomEvent && data.brideEvent">
                         <div
-                            v-motion-w-fade-up
-                            :delay="400 + index * 100"
-                            class="absolute top-0 flex items-center justify-center w-8 h-8 rounded-full sm:w-9 sm:h-9 -left-12 sm:-left-14 bg-primary text-primary-foreground"
+                            v-for="(event, index) in [data.groomEvent, data.brideEvent]"
+                            :key="index"
+                            class="relative mb-8"
                         >
-                            <component :is="event.icon" :size="16" />
+                            <div
+                                v-if="event.icon"
+                                v-motion-w-fade-up
+                                :delay="400 + index * 100"
+                                class="absolute top-0 flex items-center justify-center w-8 h-8 rounded-full sm:w-9 sm:h-9 -left-12 sm:-left-14 bg-primary text-primary-foreground"
+                            >
+                                <component :is="event.icon" :size="16" />
+                            </div>
+                            <h3
+                                v-if="event.title"
+                                v-motion-w-fade-right
+                                :delay="500 + index * 100"
+                                class="mb-1 text-2xl font-semibold sm:text-3xl font-dancing-script"
+                            >
+                                {{ event.title }}
+                            </h3>
+                            <p
+                                v-if="event.time && event.date"
+                                v-motion-w-fade-right
+                                :delay="600 + index * 100"
+                                class="mb-1 text-sm sm:text-base font-montserrat text-primary-dark"
+                            >
+                                {{ event.time }} | {{ event.date }}
+                            </p>
+                            <p
+                                v-if="event.address"
+                                v-motion-w-fade-right
+                                :delay="700 + index * 100"
+                                class="text-sm sm:text-base font-montserrat text-primary-dark"
+                            >
+                                {{ event.address }}
+                            </p>
                         </div>
-                        <h3
-                            v-motion-w-fade-right
-                            :delay="500 + index * 100"
-                            class="mb-1 text-2xl font-semibold sm:text-3xl font-dancing-script"
-                        >
-                            {{ event.title }}
-                        </h3>
-                        <p
-                            v-motion-w-fade-right
-                            :delay="600 + index * 100"
-                            class="mb-1 text-sm sm:text-base font-montserrat text-primary-dark"
-                        >
-                            {{ event.time }} | {{ event.date }}
-                        </p>
-                        <p
-                            v-motion-w-fade-right
-                            :delay="700 + index * 100"
-                            class="text-sm sm:text-base font-montserrat text-primary-dark"
-                        >
-                            {{ event.address }}
-                        </p>
-                    </div>
+                    </template>
                 </div>
             </template>
 
             <slot name="afterEvent" />
 
-            <template v-if="data.groomMap && data.brideMap">
+            <div v-if="data.groomMap" class="mt-6 text-center">
                 <div
-                    v-for="(map, index) in [data.groomMap, data.brideMap]"
-                    :key="index"
-                    v-motion-w-fade-up
-                    :delay="400 + index * 100"
-                    class="mt-6 text-center"
+                    v-if="data.groomMap.logo"
+                    v-motion-w-fade-down
+                    :delay="400"
+                    class="flex items-center justify-center mb-6"
                 >
-                    <h3 class="mb-2 text-2xl sm:text-3xl font-dancing-script">
-                        {{ map.title }}
-                    </h3>
-                    <p class="mb-4 text-sm sm:text-base font-montserrat text-primary-dark">{{ map.address }}</p>
-                    <AspectRatio :ratio="4 / 3">
+                    <NuxtImg v-bind="data.groomMap.logo" />
+                </div>
+                <h3
+                    v-if="data.groomMap.title"
+                    v-motion-w-fade-down
+                    :delay="500"
+                    class="mb-2 text-2xl sm:text-3xl font-dancing-script"
+                >
+                    {{ data.groomMap.title }}
+                </h3>
+                <p
+                    v-if="data.groomMap.address"
+                    v-motion-w-fade-down
+                    :delay="600"
+                    class="mb-4 text-sm sm:text-base font-montserrat text-primary-dark"
+                >
+                    {{ data.groomMap.address }}
+                </p>
+                <Motion is="div" v-motion-w-fade-up :delay="700">
+                    <AspectRatio v-if="data.groomMap.embedUrl" :ratio="4 / 3">
                         <iframe
-                            :src="map.embedUrl"
+                            :src="data.groomMap.embedUrl"
                             width="400"
                             height="300"
                             allow="fullscreen"
@@ -151,8 +171,40 @@ const data = computed(() => ({
                             class="w-full h-full"
                         />
                     </AspectRatio>
-                </div>
-            </template>
+                </Motion>
+            </div>
+
+            <div v-if="data.brideMap" class="mt-6 text-center">
+                <h3
+                    v-if="data.brideMap.title"
+                    v-motion-w-fade-down
+                    :delay="400"
+                    class="mb-2 text-2xl sm:text-3xl font-dancing-script"
+                >
+                    {{ data.brideMap.title }}
+                </h3>
+                <p
+                    v-if="data.brideMap.address"
+                    v-motion-w-fade-down
+                    :delay="600"
+                    class="mb-4 text-sm sm:text-base font-montserrat text-primary-dark"
+                >
+                    {{ data.brideMap.address }}
+                </p>
+                <Motion is="div" v-motion-w-fade-up :delay="800">
+                    <AspectRatio v-if="data.brideMap.embedUrl" :ratio="4 / 3">
+                        <iframe
+                            :src="data.brideMap.embedUrl"
+                            width="400"
+                            height="300"
+                            allow="fullscreen"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full h-full"
+                        />
+                    </AspectRatio>
+                </Motion>
+            </div>
 
             <slot name="afterEnd" />
         </WebContainer>
