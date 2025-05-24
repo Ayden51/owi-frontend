@@ -92,3 +92,60 @@ export interface ThankYouData {
     illustrationUrl?: string;
     illustrationAlt?: string;
 }
+
+// Landing page types
+export interface LandingFeatureCard {
+    icon: string;
+    title: string;
+    description: string;
+}
+
+export interface LandingBenefitCard {
+    image: string;
+    title: string;
+    description: string;
+}
+
+export interface LandingFAQItem {
+    question: string;
+    answer: string;
+}
+
+export interface LandingHeroData {
+    backgroundImage: string;
+    title: string;
+    subtitle: string;
+    primaryButtonText: string;
+    secondaryButtonText: string;
+}
+
+export interface LandingIntroductionData {
+    title: string;
+    subtitle: string;
+    features: LandingFeatureCard[];
+}
+
+export interface LandingShowcaseData {
+    title: string;
+    subtitle: string;
+    desktopPreviewImage: string;
+    mobilePreviewImage: string;
+    templateUrl: string;
+}
+
+export interface LandingWhyChooseUsData {
+    title: string;
+    benefits: LandingBenefitCard[];
+}
+
+export interface LandingFAQData {
+    title: string;
+    items: LandingFAQItem[];
+}
+
+export interface LandingContactData {
+    title: string;
+    subtitle: string;
+    messengerUrl: string;
+    zaloUrl: string;
+}
