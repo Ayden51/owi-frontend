@@ -54,7 +54,6 @@ export default {
                     4: "hsl(var(--chart-4))",
                     5: "hsl(var(--chart-5))",
                 },
-                // Landing page color scheme
                 pink: {
                     50: "#fdf2f8",
                     100: "#fce7f3",
@@ -87,6 +86,28 @@ export default {
                 "crimson-text": ["Crimson Text", "serif"],
                 "josefin-sans": ["Josefin Sans", "sans-serif"],
                 "brittany-signature": ["Brittany Signature", "cursive"],
+            },
+            keyframes: {
+                "accordion-down": {
+                    from: {
+                        height: "0",
+                    },
+                    to: {
+                        height: "var(--reka-accordion-content-height)",
+                    },
+                },
+                "accordion-up": {
+                    from: {
+                        height: "var(--reka-accordion-content-height)",
+                    },
+                    to: {
+                        height: "0",
+                    },
+                },
+            },
+            animation: {
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
             },
         },
         screens: breakpoints,

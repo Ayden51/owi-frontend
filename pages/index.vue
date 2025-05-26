@@ -3,26 +3,29 @@
         <!-- Header -->
         <HomeHeader />
 
-        <!-- Hero Section -->
-        <HomeHero :data="heroData" />
+        <!-- Main Content Container -->
+        <div class="container mx-auto">
+            <!-- Hero Section -->
+            <HomeHero :data="heroData" />
 
-        <!-- Introduction Section -->
-        <HomeIntroduction :data="introductionData" />
+            <!-- Introduction Section -->
+            <HomeIntroduction :data="introductionData" />
 
-        <!-- Showcase Section -->
-        <HomeShowcase :data="showcaseData" />
+            <!-- Showcase Section -->
+            <HomeShowcase :data="showcaseData" />
 
-        <!-- Why Choose Us Section -->
-        <HomeWhyChooseUs :data="whyChooseUsData" />
+            <!-- Why Choose Us Section -->
+            <HomeWhyChooseUs :data="whyChooseUsData" />
 
-        <!-- FAQ Section -->
-        <HomeFAQ :data="faqData" />
+            <!-- FAQ Section -->
+            <HomeFAQ :data="faqData" />
 
-        <!-- Contact Section -->
-        <HomeContact :data="contactData" />
+            <!-- Contact Section -->
+            <HomeContact :data="contactData" />
 
-        <!-- CTA Section -->
-        <HomeCTA />
+            <!-- CTA Section -->
+            <HomeCTA />
+        </div>
 
         <!-- Footer -->
         <HomeFooter />
@@ -41,21 +44,21 @@ import type {
 
 // SEO Meta
 useHead({
-    title: "iWedding - Nền tảng tạo website đám cưới & thiệp cưới online miễn phí",
+    title: "E-Wedding - Nền tảng tạo website đám cưới & thiệp cưới online miễn phí",
     meta: [
         {
             name: "description",
             content:
-                "Tạo website đám cưới và thiệp cưới online miễn phí với iWedding. Dễ dàng quản lý khách mời, nhận quà cưới và chia sẻ khoảnh khắc đặc biệt của bạn.",
+                "Tạo website đám cưới và thiệp cưới online miễn phí với E-Wedding. Dễ dàng quản lý khách mời, nhận quà cưới và chia sẻ khoảnh khắc đặc biệt của bạn.",
         },
         {
             property: "og:title",
-            content: "iWedding - Nền tảng tạo website đám cưới & thiệp cưới online miễn phí",
+            content: "E-Wedding - Nền tảng tạo website đám cưới & thiệp cưới online miễn phí",
         },
         {
             property: "og:description",
             content:
-                "Tạo website đám cưới và thiệp cưới online miễn phí với iWedding. Dễ dàng quản lý khách mời, nhận quà cưới và chia sẻ khoảnh khắc đặc biệt của bạn.",
+                "Tạo website đám cưới và thiệp cưới online miễn phí với E-Wedding. Dễ dàng quản lý khách mời, nhận quà cưới và chia sẻ khoảnh khắc đặc biệt của bạn.",
         },
         {
             property: "og:type",
@@ -69,7 +72,7 @@ const heroData: LandingHeroData = {
     backgroundImage: "/images/landing/hero-background.jpg",
     title: "NỀN TẢNG TẠO WEBSITE ĐÁM CƯỚI & THIỆP CƯỚI ONLINE MIỄN PHÍ",
     subtitle: "Cho đám cưới trở nên độc đáo hơn theo cách riêng của bạn!",
-    primaryButtonText: "ĐẶT ĐẦU MIỄN PHÍ",
+    primaryButtonText: "Liên hệ ngay",
     secondaryButtonText: "WEBSITES ĐÃ TẠO",
 };
 
@@ -167,7 +170,7 @@ const faqData: LandingFAQData = {
         },
         {
             question: "Đặt tên miền website đám cưới như thế nào cho đúng?",
-            answer: 'Bạn có thể đặt tên miền theo tên của cặp đôi như "thanh-thu-wedding.iwedding.info" hoặc kết hợp tên với ngày cưới. Chúng tôi sẽ hỗ trợ bạn tạo tên miền phù hợp và dễ nhớ.',
+            answer: 'Bạn có thể đặt tên miền theo tên của cặp đôi như "thanh-thu-wedding.ewedding.info" hoặc kết hợp tên với ngày cưới. Chúng tôi sẽ hỗ trợ bạn tạo tên miền phù hợp và dễ nhớ.',
         },
     ],
 };
@@ -176,7 +179,7 @@ const faqData: LandingFAQData = {
 const contactData: LandingContactData = {
     title: "LIÊN HỆ VỚI BỊ ĐỂ ĐƯỢC HỖ TRỢ!",
     subtitle: "Để được hỗ trợ nhanh hơn, vui lòng liên hệ với chúng tôi qua Messenger hoặc Zalo.",
-    messengerUrl: "https://m.me/iwedding.ctpg",
-    zaloUrl: "https://zalo.me/iwedding.ctpg",
+    messengerUrl: "https://dub.sh/StudyCare-Zalo",
+    zaloUrl: "https://dub.sh/StudyCare-Zalo",
 };
 </script>

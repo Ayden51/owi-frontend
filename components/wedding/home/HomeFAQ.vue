@@ -1,8 +1,8 @@
 <template>
-    <section id="faq" class="py-20 bg-white">
+    <section id="faq" class="py-20 bg-gradient-to-b from-white to-pink-50">
         <div class="container mx-auto px-4">
             <!-- Section Header -->
-            <div 
+            <div
                 v-motion
                 class="text-center mb-16"
                 :initial="{ opacity: 0, y: 30 }"
@@ -13,53 +13,36 @@
                 </h2>
             </div>
 
-            <!-- FAQ Items -->
-            <div class="max-w-4xl mx-auto space-y-4">
-                <div 
-                    v-for="(item, index) in data.items" 
-                    :key="index"
+            <!-- FAQ Accordion -->
+            <div class="max-w-4xl mx-auto">
+                <Accordion
                     v-motion
-                    class="bg-gray-50 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+                    type="single"
+                    collapsible
+                    class="space-y-4"
                     :initial="{ opacity: 0, y: 30 }"
-                    :visible-once="{ 
-                        opacity: 1, 
-                        y: 0, 
-                        transition: { 
-                            duration: 600, 
-                            delay: index * 100 + 200 
-                        } 
-                    }"
+                    :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: 200 } }"
                 >
-                    <!-- Question -->
-                    <button 
-                        class="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-gray-100 transition-colors duration-200"
-                        @click="toggleFAQ(index)"
+                    <AccordionItem
+                        v-for="(item, index) in data.items"
+                        :key="index"
+                        :value="`item-${index}`"
+                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
                     >
-                        <span class="text-lg font-semibold text-gray-800 pr-4">
-                            {{ item.question }}
-                        </span>
-                        <ChevronDown 
-                            class="w-6 h-6 text-gray-500 transition-transform duration-300"
-                            :class="{ 'rotate-180': openItems.includes(index) }"
-                        />
-                    </button>
-
-                    <!-- Answer -->
-                    <div 
-                        v-if="openItems.includes(index)"
-                        v-motion
-                        class="px-8 pb-6 text-gray-600 leading-relaxed"
-                        :initial="{ opacity: 0, height: 0 }"
-                        :enter="{ opacity: 1, height: 'auto', transition: { duration: 300 } }"
-                        :leave="{ opacity: 0, height: 0, transition: { duration: 300 } }"
-                    >
-                        {{ item.answer }}
-                    </div>
-                </div>
+                        <AccordionTrigger class="px-8 py-6 text-left hover:bg-gray-50 rounded-t-2xl">
+                            <span class="text-lg font-semibold text-gray-800 text-left">
+                                {{ item.question }}
+                            </span>
+                        </AccordionTrigger>
+                        <AccordionContent class="px-8 pb-6 text-gray-600 leading-relaxed">
+                            {{ item.answer }}
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion>
             </div>
 
             <!-- Bottom CTA -->
-            <div 
+            <div
                 v-motion
                 class="text-center mt-16"
                 :initial="{ opacity: 0, y: 30 }"
@@ -68,10 +51,10 @@
                 <p class="text-lg text-gray-700 mb-6">
                     Vẫn còn thắc mắc? Đừng ngần ngại liên hệ với chúng tôi để được hỗ trợ!
                 </p>
-                <Button 
+                <Button
                     size="lg"
                     class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                    @click="scrollToContact"
+                    @click="openZaloContact"
                 >
                     Liên hệ ngay
                 </Button>
@@ -81,31 +64,17 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from '@/components/ui/button'
-import { ChevronDown } from 'lucide-vue-next'
-import type { LandingFAQData } from '@/components/wedding/types'
+import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import type { LandingFAQData } from "@/components/wedding/types";
 
 interface Props {
-    data: LandingFAQData
+    data: LandingFAQData;
 }
 
-defineProps<Props>()
+defineProps<Props>();
 
-const openItems = ref<number[]>([])
-
-const toggleFAQ = (index: number) => {
-    const currentIndex = openItems.value.indexOf(index)
-    if (currentIndex > -1) {
-        openItems.value.splice(currentIndex, 1)
-    } else {
-        openItems.value.push(index)
-    }
-}
-
-const scrollToContact = () => {
-    const element = document.getElementById('contact')
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-    }
-}
+const openZaloContact = () => {
+    window.open("https://dub.sh/StudyCare-Zalo", "_blank");
+};
 </script>

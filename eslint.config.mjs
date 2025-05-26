@@ -10,7 +10,7 @@ export default withNuxt(
             "vue/multi-word-component-names": [
                 "error",
                 {
-                    ignores: ["Button", "Card", "Dialog", "Separator", "index"],
+                    ignores: ["Button", "Card", "Dialog", "Separator", "Accordion", "index"],
                 },
             ],
             // Allow missing default props for UI components
