@@ -1,5 +1,5 @@
 <template>
-    <component :is="props.as" :class="cn('container max-w-screen-sm mx-auto', props.class)">
+    <component :is="props.as" :class="cn('container mx-auto', webContainerClass, props.class)">
         <slot />
     </component>
 </template>
@@ -18,4 +18,6 @@ const props = withDefaults(defineProps<Props>(), {
     class: "",
     as: "div",
 });
+
+const webContainerClass = inject("webContainerClass", "");
 </script>

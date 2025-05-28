@@ -126,4 +126,7 @@ const galleryData = ref<GalleryData>({
     ],
 });
 const thankYouData = ref<ThankYouData>({});
+
+provide("webSectionClass", "max-w-screen-md mx-auto");
+provide("webContainerClass", "max-w-screen-sm");
 </script>

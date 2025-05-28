@@ -1,5 +1,5 @@
 <template>
-    <component :is="props.as" :class="cn('max-w-screen-md mx-auto', props.class)">
+    <component :is="props.as" :class="cn(webSectionClass, props.class)">
         <slot />
     </component>
 </template>
@@ -18,4 +18,6 @@ const props = withDefaults(defineProps<Props>(), {
     class: "",
     as: "section",
 });
+
+const webSectionClass = inject("webSectionClass", "");
 </script>
