@@ -58,7 +58,7 @@ const sectionStyles = computed(() => {
 <template>
     <WebSection class="p-8 pb-20 text-center" :style="sectionStyles">
         <WebContainer>
-            <Card v-motion-w-fade-up class="relative bg-primary-light">
+            <Card v-motion-w-fade-up-once class="relative bg-primary-light">
                 <!-- Top Floral Decoration -->
                 <FloralDecoration
                     corner="top-left"
@@ -76,7 +76,7 @@ const sectionStyles = computed(() => {
 
                 <CardHeader class="py-12 sm:p-12 gap-y-4">
                     <CardTitle
-                        v-motion-w-fade-down
+                        v-motion-w-fade-down-once
                         :delay="100"
                         as="h1"
                         class="text-4xl uppercase sm:text-5xl font-playfair-display"
@@ -84,7 +84,7 @@ const sectionStyles = computed(() => {
                         {{ data.title }}
                     </CardTitle>
                     <CardDescription
-                        v-motion-w-fade-down
+                        v-motion-w-fade-down-once
                         :delay="200"
                         class="text-2xl sm:text-3xl font-dancing-script text-card-foreground"
                     >
@@ -93,7 +93,7 @@ const sectionStyles = computed(() => {
                 </CardHeader>
 
                 <CardContent class="p-4 pt-0">
-                    <div v-motion-w-fade-up :delay="300" class="grid grid-cols-2 gap-4 mb-4">
+                    <div v-motion-w-fade-up-once :delay="300" class="grid grid-cols-2 gap-4 mb-4">
                         <div
                             v-for="(side, index) in [data.groom, data.bride]"
                             :key="index"
@@ -121,7 +121,7 @@ const sectionStyles = computed(() => {
                         </div>
                     </div>
 
-                    <div v-motion-w-fade-up :delay="400" class="grid grid-cols-3 gap-2 mb-4 sm:gap-4">
+                    <div v-motion-w-fade-up-once :delay="400" class="grid grid-cols-3 gap-2 mb-4 sm:gap-4">
                         <template v-for="(image, index) in data.images" :key="index">
                             <AspectRatioPicture
                                 :ratio="{ ratio: 3 / 4 }"
@@ -135,7 +135,7 @@ const sectionStyles = computed(() => {
                         </template>
                     </div>
 
-                    <div v-motion-w-fade-up :delay="500" class="grid grid-cols-3 gap-2 text-center">
+                    <div v-motion-w-fade-up-once :delay="500" class="grid grid-cols-3 gap-2 text-center">
                         <div v-for="(hint, index) in data.navHints" :key="index">
                             <a :href="hint.slug" class="text-xl underline sm:text-2xl font-dancing-script">
                                 {{ hint.label }}
@@ -145,7 +145,7 @@ const sectionStyles = computed(() => {
                     </div>
                 </CardContent>
 
-                <CardFooter v-motion-w-fade-up :delay="600" class="justify-center p-12 pt-0">
+                <CardFooter v-motion-w-fade-up-once :delay="600" class="justify-center p-12 pt-0">
                     <p class="text-lg font-semibold sm:text-xl text-primary-dark">{{ data.finalText }}</p>
                 </CardFooter>
 

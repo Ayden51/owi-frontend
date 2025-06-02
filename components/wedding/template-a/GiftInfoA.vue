@@ -45,10 +45,10 @@ const data = computed(() => ({
 <template>
     <WebSection class="p-6 text-center bg-white text-primary-dark">
         <WebContainer>
-            <WeddingOrnament v-motion-w-fade-down width="128" class="mx-auto mb-2 fill-primary-dark" />
+            <WeddingOrnament v-motion-w-fade-down-once width="128" class="mx-auto mb-2 fill-primary-dark" />
 
             <h2
-                v-motion-w-fade-down
+                v-motion-w-fade-down-once
                 :delay="100"
                 class="mb-6 text-2xl font-semibold uppercase sm:text-3xl font-montserrat"
             >
@@ -57,7 +57,7 @@ const data = computed(() => ({
 
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
                 <Dialog v-for="(side, index) in [data.groom, data.bride]" :key="index">
-                    <div :key="index" v-motion-w-fade-right :delay="100 + index * 100" class="flex flex-col gap-4">
+                    <div :key="index" v-motion-w-fade-right-once :delay="100 + index * 100" class="flex flex-col gap-4">
                         <Card class="w-full rounded-none bg-primary-light">
                             <CardContent class="p-2">
                                 <AspectRatioPicture

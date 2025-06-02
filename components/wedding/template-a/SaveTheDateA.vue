@@ -41,13 +41,13 @@ const sectionStyles = computed(() => {
 
 <template>
     <WebSection class="relative z-10 pt-0 text-center text-primary" :style="sectionStyles">
-        <Motion is="div" v-motion-w-fade-up :delay="150">
+        <Motion is="div" v-motion-w-fade-up-once :delay="150">
             <h2 class="absolute z-20 text-xl -translate-x-1/2 -top-10 font-josefin-sans left-1/2 sm:text-2xl">
                 {{ data.sectionTitle }}
             </h2>
         </Motion>
 
-        <Motion is="div" v-motion-w-fade-up :delay="100">
+        <Motion is="div" v-motion-w-fade-up-once :delay="100">
             <AspectRatioPicture
                 :ratio="{ ratio: 4 / 3 }"
                 :picture="{
@@ -74,10 +74,10 @@ const sectionStyles = computed(() => {
         <div class="relative px-2 pt-8 pb-12">
             <WebContainer>
                 <p class="flex flex-col gap-2 mb-4 text-primary-dark">
-                    <span v-motion-w-fade-up :delay="200" class="text-base uppercase sm:text-lg font-montserrat">{{
+                    <span v-motion-w-fade-up-once :delay="200" class="text-base uppercase sm:text-lg font-montserrat">{{
                         data.introText1
                     }}</span>
-                    <span v-motion-w-fade-up :delay="250" class="text-xl sm:text-3xl font-brittany-signature">{{
+                    <span v-motion-w-fade-up-once :delay="250" class="text-xl sm:text-3xl font-brittany-signature">{{
                         data.introText2
                     }}</span>
                 </p>
@@ -86,7 +86,7 @@ const sectionStyles = computed(() => {
                     <template v-for="(content, index) in [data.groomName, 'icon', data.brideName]" :key="index">
                         <h2
                             v-if="content !== 'icon'"
-                            v-motion-w-fade-up
+                            v-motion-w-fade-up-once
                             :delay="300 + index * 50"
                             class="text-2xl font-bold sm:text-4xl font-playfair-display"
                         >
@@ -94,7 +94,7 @@ const sectionStyles = computed(() => {
                         </h2>
                         <NuxtPicture
                             v-else
-                            v-motion-w-fade-up
+                            v-motion-w-fade-up-once
                             :delay="300 + index * 50"
                             src="images/mics/rings-1.png"
                             alt="Wedding rings icon"
@@ -105,7 +105,7 @@ const sectionStyles = computed(() => {
                 </div>
 
                 <p
-                    v-motion-w-fade-down
+                    v-motion-w-fade-down-once
                     :delay="450"
                     class="mb-1 text-sm font-semibold uppercase sm:text-lg font-montserrat text-primary-dark"
                 >
@@ -115,31 +115,31 @@ const sectionStyles = computed(() => {
                     class="grid items-center justify-center grid-cols-5 gap-4 mx-auto mb-6 font-semibold max-w-72 sm:max-w-lg font-montserrat text-primary-dark"
                 >
                     <span
-                        v-motion-w-fade-right
+                        v-motion-w-fade-right-once
                         :delay="500"
                         class="block col-span-2 text-lg uppercase sm:text-2xl min-h-8 border-y-2 border-primary-dark"
                         >{{ data.date.month }}</span
                     >
                     <span
-                        v-motion-w-fade-up
+                        v-motion-w-fade-up-once
                         :delay="550"
                         class="self-start block text-5xl sm:text-7xl font-bold font-playfair-display text-primary leading-[10px] sm:leading-[10px]"
                         >{{ data.date.day }}</span
                     >
                     <span
-                        v-motion-w-fade-left
+                        v-motion-w-fade-left-once
                         :delay="600"
                         class="block col-span-2 text-lg sm:text-2xl min-h-8 border-y-2 border-primary-dark"
                         >{{ data.date.year }}</span
                     >
                 </div>
 
-                <p v-motion-w-fade-left :delay="650" class="mb-4 text-sm font-semibold sm:text-lg font-montserrat">
+                <p v-motion-w-fade-left-once :delay="650" class="mb-4 text-sm font-semibold sm:text-lg font-montserrat">
                     {{ data.lunarDateText }}
                 </p>
 
                 <p
-                    v-motion-w-fade-right
+                    v-motion-w-fade-right-once
                     :delay="700"
                     class="text-lg sm:text-2xl font-brittany-signature text-primary-dark"
                 >
@@ -147,7 +147,7 @@ const sectionStyles = computed(() => {
                 </p>
             </WebContainer>
 
-            <Motion is="div" v-motion-w-fade-up :delay="800">
+            <Motion is="div" v-motion-w-fade-up-once :delay="800">
                 <FloralDecoration
                     corner="bottom-left"
                     image="floral-2"

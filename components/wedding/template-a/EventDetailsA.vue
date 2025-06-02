@@ -55,21 +55,21 @@ const data = computed(() => ({
 
             <div v-if="data.title" class="grid items-center justify-center grid-cols-5 gap-4 mt-2 mb-6 sm:grid-cols-4">
                 <NuxtPicture
-                    v-motion-w-fade-right
+                    v-motion-w-fade-right-once
                     src="/images/mics/stars-1.png"
                     alt="Wedding star decoration"
                     loading="lazy"
                     class="w-6 h-6 ms-auto sm:w-8 sm:h-8"
                 />
                 <h2
-                    v-motion-w-fade-down
+                    v-motion-w-fade-down-once
                     :delay="100"
                     class="col-span-3 text-3xl text-center sm:text-4xl font-brittany-signature text-primary-dark sm:col-span-2"
                 >
                     {{ data.title }}
                 </h2>
                 <NuxtPicture
-                    v-motion-w-fade-left
+                    v-motion-w-fade-left-once
                     :delay="200"
                     src="/images/mics/stars-1.png"
                     alt="Wedding star decoration"
@@ -84,7 +84,7 @@ const data = computed(() => ({
             <template v-if="data.groomEvent && data.brideEvent">
                 <div class="relative max-w-lg pl-12 mx-auto mb-12 sm:pl-14">
                     <div
-                        v-motion-w-fade-up
+                        v-motion-w-fade-up-once
                         :delay="300"
                         class="absolute left-4 sm:left-[1.125rem] top-0 h-full w-0.5 bg-primary opacity-50 -translate-x-1/2"
                     />
@@ -97,7 +97,7 @@ const data = computed(() => ({
                         >
                             <div
                                 v-if="event.icon"
-                                v-motion-w-fade-up
+                                v-motion-w-fade-up-once
                                 :delay="400 + index * 100"
                                 class="absolute top-0 flex items-center justify-center w-8 h-8 rounded-full sm:w-9 sm:h-9 -left-12 sm:-left-14 bg-primary text-primary-foreground"
                             >
@@ -105,7 +105,7 @@ const data = computed(() => ({
                             </div>
                             <h3
                                 v-if="event.title"
-                                v-motion-w-fade-right
+                                v-motion-w-fade-right-once
                                 :delay="500 + index * 100"
                                 class="mb-1 text-2xl font-semibold sm:text-3xl font-dancing-script"
                             >
@@ -113,7 +113,7 @@ const data = computed(() => ({
                             </h3>
                             <p
                                 v-if="event.time && event.date"
-                                v-motion-w-fade-right
+                                v-motion-w-fade-right-once
                                 :delay="600 + index * 100"
                                 class="mb-1 text-sm sm:text-base font-montserrat text-primary-dark"
                             >
@@ -121,7 +121,7 @@ const data = computed(() => ({
                             </p>
                             <p
                                 v-if="event.address"
-                                v-motion-w-fade-right
+                                v-motion-w-fade-right-once
                                 :delay="700 + index * 100"
                                 class="text-sm sm:text-base font-montserrat text-primary-dark"
                             >
@@ -137,7 +137,7 @@ const data = computed(() => ({
             <div v-if="data.groomMap" class="mt-6 text-center">
                 <div
                     v-if="data.groomMap.logo"
-                    v-motion-w-fade-down
+                    v-motion-w-fade-down-once
                     :delay="400"
                     class="flex items-center justify-center mb-6"
                 >
@@ -145,7 +145,7 @@ const data = computed(() => ({
                 </div>
                 <h3
                     v-if="data.groomMap.title"
-                    v-motion-w-fade-down
+                    v-motion-w-fade-down-once
                     :delay="500"
                     class="mb-2 text-2xl sm:text-3xl font-dancing-script"
                 >
@@ -153,13 +153,13 @@ const data = computed(() => ({
                 </h3>
                 <p
                     v-if="data.groomMap.address"
-                    v-motion-w-fade-down
+                    v-motion-w-fade-down-once
                     :delay="600"
                     class="mb-4 text-sm sm:text-base font-montserrat text-primary-dark"
                 >
                     {{ data.groomMap.address }}
                 </p>
-                <Motion is="div" v-motion-w-fade-up :delay="700">
+                <Motion is="div" v-motion-w-fade-up-once :delay="700">
                     <AspectRatio v-if="data.groomMap.embedUrl" :ratio="4 / 3">
                         <iframe
                             :src="data.groomMap.embedUrl"
@@ -177,7 +177,7 @@ const data = computed(() => ({
             <div v-if="data.brideMap" class="mt-6 text-center">
                 <h3
                     v-if="data.brideMap.title"
-                    v-motion-w-fade-down
+                    v-motion-w-fade-down-once
                     :delay="400"
                     class="mb-2 text-2xl sm:text-3xl font-dancing-script"
                 >
@@ -185,13 +185,13 @@ const data = computed(() => ({
                 </h3>
                 <p
                     v-if="data.brideMap.address"
-                    v-motion-w-fade-down
+                    v-motion-w-fade-down-once
                     :delay="600"
                     class="mb-4 text-sm sm:text-base font-montserrat text-primary-dark"
                 >
                     {{ data.brideMap.address }}
                 </p>
-                <Motion is="div" v-motion-w-fade-up :delay="800">
+                <Motion is="div" v-motion-w-fade-up-once :delay="800">
                     <AspectRatio v-if="data.brideMap.embedUrl" :ratio="4 / 3">
                         <iframe
                             :src="data.brideMap.embedUrl"

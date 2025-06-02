@@ -31,15 +31,15 @@ const data = computed(() => ({
                 :img-attrs="{ class: 'w-full h-full' }"
             />
             <!-- Top Floral Decorations -->
-            <Motion is="div" v-motion-w-fade-right class="absolute inset-0 pointer-events-none">
+            <Motion is="div" v-motion-w-fade-right-once class="absolute inset-0 pointer-events-none">
                 <FloralDecoration corner="top-left" image="floral-1" class="w-32 sm:w-48" />
             </Motion>
 
-            <Motion is="div" v-motion-w-fade-left :delay="200" class="absolute inset-0 pointer-events-none">
+            <Motion is="div" v-motion-w-fade-left-once :delay="200" class="absolute inset-0 pointer-events-none">
                 <FloralDecoration corner="top-right" image="floral-1" class="w-32 sm:w-48" />
             </Motion>
 
-            <Motion is="div" v-motion-w-fade-down :delay="300" class="absolute inset-0 pointer-events-none">
+            <Motion is="div" v-motion-w-fade-down-once :delay="300" class="absolute inset-0 pointer-events-none">
                 <h2
                     class="absolute w-full text-5xl text-center -translate-x-1/2 font-brittany-signature top-20 sm:top-36 left-1/2 text-primary-dark sm:text-7xl"
                 >
@@ -48,7 +48,7 @@ const data = computed(() => ({
             </Motion>
 
             <NuxtPicture
-                v-motion-w-fade-up
+                v-motion-w-fade-up-once
                 :delay="400"
                 :src="data.illustrationUrl"
                 :alt="data.illustrationAlt"

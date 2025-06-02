@@ -58,17 +58,17 @@ const onHide = () => (visibleRef.value = false);
 <template>
     <WebSection class="p-6 text-center bg-white text-primary-dark">
         <WebContainer class="">
-            <WeddingOrnament v-motion-w-fade-down width="128" class="mx-auto mb-2 fill-primary-dark" />
+            <WeddingOrnament v-motion-w-fade-down-once width="128" class="mx-auto mb-2 fill-primary-dark" />
 
             <h2
-                v-motion-w-fade-down
+                v-motion-w-fade-down-once
                 :delay="100"
                 class="mb-6 text-2xl font-semibold uppercase sm:text-3xl font-montserrat"
             >
                 {{ data.title }}
             </h2>
 
-            <div v-motion-w-fade-up :delay="300" class="columns-2 sm:columns-3 gap-x-2">
+            <div v-motion-w-fade-up-once :delay="300" class="columns-2 sm:columns-3 gap-x-2">
                 <div v-for="(image, imgIndex) in data.images" :key="imgIndex" class="mb-2 overflow-hidden">
                     <NuxtPicture
                         :placeholder="[image.width, image.height, 30, 5]"
