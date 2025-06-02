@@ -1,5 +1,5 @@
 <template>
-    <component :is="props.as" :class="cn(webSectionClass, props.class)">
+    <component :is="props.as" :class="cn('px-4 lg:px-8', webSectionClass, props.class)">
         <slot />
     </component>
 </template>
