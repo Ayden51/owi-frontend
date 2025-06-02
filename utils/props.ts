@@ -5,7 +5,7 @@ export function valueUpdater<T extends Updater<unknown>>(updaterOrValue: T, ref:
     ref.value = typeof updaterOrValue === "function" ? updaterOrValue(ref.value) : updaterOrValue;
 }
 
-export function removeKeysFromProps(props: { [key: string]: unknown }, ...keys: string[]) {
+export function removeKeysFromProps(props: object, ...keys: string[]): { [key: string]: unknown } {
     return Object.fromEntries(Object.entries(props).filter(([key]) => keys.indexOf(key) === -1));
 }
 
