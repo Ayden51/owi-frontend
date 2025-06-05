@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { GalleryData } from "@/components/wedding/types";
-import { cn, removeKeysFromProps } from "@/utils";
+import { reactiveOmit } from "@vueuse/core";
+import { cn } from "@/utils";
 
 const props = defineProps<{
     data: GalleryData;
@@ -80,7 +81,7 @@ const onHide = () => (visibleRef.value = false);
                             ),
                         }"
                         loading="lazy"
-                        v-bind="removeKeysFromProps(image, 'imgAttrs')"
+                        v-bind="reactiveOmit(image, 'imgAttrs')"
                         @click="() => showImg(imgIndex)"
                     />
                 </div>
