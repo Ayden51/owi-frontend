@@ -40,9 +40,9 @@ const sectionStyles = computed(() => {
 </script>
 
 <template>
-    <WebSection class="relative z-10 pt-0 text-center text-primary" :style="sectionStyles">
+    <WebSection class="relative z-10 px-0 pt-0 text-center text-primary lg:px-0" :style="sectionStyles">
         <Motion is="div" v-motion-w-fade-up-once :delay="150">
-            <h2 class="absolute z-20 text-xl -translate-x-1/2 -top-10 font-josefin-sans left-1/2 sm:text-2xl">
+            <h2 class="absolute z-20 w-full text-xl -translate-x-1/2 -top-10 font-josefin-sans left-1/2 sm:text-2xl">
                 {{ data.sectionTitle }}
             </h2>
         </Motion>
