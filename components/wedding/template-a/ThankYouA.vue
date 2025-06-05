@@ -21,7 +21,7 @@ const data = computed(() => ({
 </script>
 
 <template>
-    <WebSection>
+    <WebSection class="px-0 lg:px-0">
         <AspectRatio :ratio="3 / 4" class="overflow-hidden">
             <NuxtPicture
                 :src="data.backgroundImageUrl"
