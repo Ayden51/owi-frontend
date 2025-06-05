@@ -1,7 +1,7 @@
 <template>
     <AspectRatio v-bind="ratio">
         <NuxtPicture
-            v-bind="removeKeysFromProps(picture, 'width', 'height')"
+            v-bind="reactiveOmit(picture, 'width', 'height')"
             :width="imageDimensions.width"
             :height="imageDimensions.height"
         />
@@ -11,8 +11,8 @@
 
 <script setup lang="ts">
 import type { AspectRatioProps } from "reka-ui";
+import { reactiveOmit } from "@vueuse/core";
 import type { NuxtPictureProps } from "@/components/wedding/types";
-import { removeKeysFromProps } from "@/utils";
 
 interface Props {
     ratio: AspectRatioProps;
