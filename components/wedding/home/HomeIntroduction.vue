@@ -1,57 +1,36 @@
 <template>
-    <section id="introduction" class="py-20 bg-gradient-to-b from-pink-50 to-white">
-        <div class="container mx-auto px-4">
-            <!-- Section Header -->
-            <div
-                v-motion
-                class="text-center mb-16"
-                :initial="{ opacity: 0, y: 30 }"
-                :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
-            >
-                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
-                    {{ data.title }}
-                </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                    {{ data.subtitle }}
-                </p>
-            </div>
+    <WebSection id="introduction" class="py-16 bg-gradient-to-b from-pink-50 to-white">
+        <WebContainer>
+            <HomeSectionTitle :title="data.title" :subtitle="data.subtitle" />
 
             <!-- Features Grid -->
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div
+                class="flex flex-col items-stretch justify-center max-w-6xl gap-12 mx-auto sm:flex-row sm:flex-wrap lg:flex-nowrap"
+            >
                 <Card
                     v-for="(feature, index) in data.features"
                     :key="index"
-                    v-motion
-                    class="text-center group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-lg bg-white"
-                    :initial="{ opacity: 0, y: 50 }"
-                    :visible-once="{
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                            duration: 600,
-                            delay: index * 200 + 200,
-                        },
-                    }"
+                    v-motion-w-fade-right-once
+                    :delay="index * 400"
+                    class="w-full sm:w-[calc(50%-1.5rem)] lg:w-full text-center transition-shadow duration-500 bg-white border-0 shadow-lg group hover:shadow-xl"
                 >
-                    <CardContent class="p-8">
+                    <CardContent class="flex flex-col items-center p-8">
                         <!-- Feature Icon -->
-                        <div class="mb-6 flex justify-center">
+                        <div
+                            class="flex items-center justify-center p-2 mb-6 duration-500 bg-pink-100 rounded-[1.25rem]"
+                        >
                             <div
-                                class="w-20 h-20 bg-gradient-to-br from-pink-100 to-rose-100 rounded-2xl flex items-center justify-center group-hover:from-pink-200 group-hover:to-rose-200 transition-all duration-300"
+                                class="flex items-center justify-center p-4 text-white transition-transform duration-500 transform bg-pink-500 shadow-lg rounded-xl group-hover:scale-105"
                             >
-                                <div
-                                    class="w-16 h-16 bg-gradient-to-br from-pink-600 to-rose-600 rounded-xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform duration-300 shadow-lg"
-                                >
-                                    <component :is="getIconComponent(feature.icon)" class="w-8 h-8" />
-                                </div>
+                                <component :is="feature.icon" :size="32" />
                             </div>
                         </div>
 
                         <!-- Feature Content -->
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">
+                        <h3 class="mb-4 text-2xl font-bold text-gray-700">
                             {{ feature.title }}
                         </h3>
-                        <p class="text-gray-600 leading-relaxed">
+                        <p class="text-gray-500">
                             {{ feature.description }}
                         </p>
                     </CardContent>
@@ -59,54 +38,19 @@
             </div>
 
             <!-- Bottom CTA -->
-            <div
-                v-motion
-                class="text-center mt-16"
-                :initial="{ opacity: 0, y: 30 }"
-                :visible-once="{ opacity: 1, y: 0, transition: { duration: 800, delay: 800 } }"
-            >
-                <p class="text-lg text-gray-700 mb-6">
-                    Tự tay xây dựng <strong class="text-pink-600">Website đám cưới & Thiệp cưới online</strong> của
-                    riêng bạn?
-                </p>
-                <Button
-                    size="lg"
-                    class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                    @click="scrollToContact"
-                >
-                    ĐẶT ĐẦU NGAY →
-                </Button>
+            <div class="mt-16 text-center">
+                <HomeButton v-motion-w-pop-once v-bind="data.ctaButton" />
             </div>
-        </div>
-    </section>
+        </WebContainer>
+    </WebSection>
 </template>
 
 <script setup lang="ts">
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Send, CheckCircle } from "lucide-vue-next";
 import type { LandingIntroductionData } from "@/components/wedding/types";
 
 interface Props {
     data: LandingIntroductionData;
 }
 
-defineProps<Props>();
-
-const iconComponents = {
-    heart: Heart,
-    send: Send,
-    check: CheckCircle,
-};
-
-const getIconComponent = (iconName: string) => {
-    return iconComponents[iconName as keyof typeof iconComponents] || Heart;
-};
-
-const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-    }
-};
+const { data } = defineProps<Props>();
 </script>

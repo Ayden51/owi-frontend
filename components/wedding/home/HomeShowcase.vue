@@ -1,202 +1,191 @@
 <template>
-    <section id="showcase" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <!-- Section Header -->
-            <div
-                v-motion
-                class="text-center mb-16"
-                :initial="{ opacity: 0, y: 30 }"
-                :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
+    <WebSection id="showcase" ref="showcaseRef" class="py-16 bg-white">
+        <WebContainer>
+            <HomeSectionTitle :title="data.title" :subtitle="data.subtitle" />
+
+            <!-- Interactive Template Preview with Tabs -->
+            <Tabs
+                :default-value="defaultView"
+                class="flex flex-col items-center justify-center"
+                :style="getCssVariables()"
             >
-                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
-                    {{ data.title }}
-                </h2>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                    {{ data.subtitle }}
-                </p>
-            </div>
-
-            <!-- Toggle Switch -->
-            <div
-                v-motion
-                class="flex justify-center mb-8"
-                :initial="{ opacity: 0, y: 20 }"
-                :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: 100 } }"
-            >
-                <div class="bg-white rounded-full p-1 shadow-lg border border-gray-200">
-                    <div class="flex items-center space-x-1">
-                        <button
-                            :class="[
-                                'flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300',
-                                currentView === 'desktop'
-                                    ? 'bg-pink-600 text-white shadow-md'
-                                    : 'text-gray-600 hover:text-pink-600',
-                            ]"
-                            @click="currentView = 'desktop'"
-                        >
-                            <Monitor class="w-4 h-4" />
-                            <span class="text-sm font-medium">Desktop</span>
-                        </button>
-                        <button
-                            :class="[
-                                'flex items-center space-x-2 px-4 py-2 rounded-full transition-all duration-300',
-                                currentView === 'mobile'
-                                    ? 'bg-pink-600 text-white shadow-md'
-                                    : 'text-gray-600 hover:text-pink-600',
-                            ]"
-                            @click="currentView = 'mobile'"
-                        >
-                            <Smartphone class="w-4 h-4" />
-                            <span class="text-sm font-medium">Mobile</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Preview Container -->
-            <div class="max-w-7xl mx-auto">
-                <div class="flex justify-center">
-                    <!-- Desktop Preview -->
-                    <div
-                        v-motion
-                        class="relative"
-                        :initial="{ opacity: 0, x: -50 }"
-                        :visible-once="{ opacity: 1, x: 0, transition: { duration: 800, delay: 200 } }"
-                    >
-                        <div class="relative bg-gray-800 rounded-t-lg p-3 shadow-2xl">
-                            <!-- Browser Chrome -->
-                            <div class="flex items-center space-x-2 mb-3">
-                                <div class="w-3 h-3 bg-red-500 rounded-full" />
-                                <div class="w-3 h-3 bg-yellow-500 rounded-full" />
-                                <div class="w-3 h-3 bg-green-500 rounded-full" />
-                                <div class="flex-1 bg-gray-700 rounded px-3 py-1 ml-4">
-                                    <span class="text-gray-300 text-sm">{{ data.templateUrl }}</span>
-                                </div>
-                            </div>
-
-                            <!-- Desktop Preview Content -->
-                            <div class="bg-white rounded overflow-hidden">
-                                <div
-                                    class="aspect-[16/10] bg-gradient-to-br from-green-900 via-green-800 to-green-700 relative overflow-hidden"
-                                >
-                                    <!-- Simulated wedding template preview -->
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <div class="text-center text-white p-8">
-                                            <div
-                                                class="w-24 h-24 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center"
-                                            >
-                                                <Heart class="w-12 h-12 text-white" />
-                                            </div>
-                                            <h3 class="text-2xl font-bold mb-2">Thanh & Thu</h3>
-                                            <p class="text-lg opacity-90">Wedding Invitation</p>
-                                            <div class="mt-6 space-y-2">
-                                                <div class="h-2 bg-white/30 rounded w-32 mx-auto" />
-                                                <div class="h-2 bg-white/30 rounded w-24 mx-auto" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Decorative elements -->
-                                    <div class="absolute top-4 left-4 w-8 h-8 bg-white/10 rounded-full" />
-                                    <div class="absolute bottom-4 right-4 w-6 h-6 bg-white/10 rounded-full" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-4">
-                            <span class="text-sm font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
-                                Desktop View
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Mobile Preview -->
-                    <div
-                        v-motion
-                        class="relative flex justify-center"
-                        :initial="{ opacity: 0, x: 50 }"
-                        :visible-once="{ opacity: 1, x: 0, transition: { duration: 800, delay: 400 } }"
-                    >
-                        <div class="relative">
-                            <!-- Phone Frame -->
-                            <div class="bg-gray-800 rounded-[2.5rem] p-2 shadow-2xl">
-                                <div class="bg-black rounded-[2rem] p-1">
-                                    <div class="bg-white rounded-[1.5rem] overflow-hidden w-64 h-[32rem]">
-                                        <!-- Mobile Preview Content -->
-                                        <div
-                                            class="h-full bg-gradient-to-br from-green-900 via-green-800 to-green-700 relative overflow-hidden"
-                                        >
-                                            <div class="absolute inset-0 flex items-center justify-center">
-                                                <div class="text-center text-white p-6">
-                                                    <div
-                                                        class="w-16 h-16 bg-white/20 rounded-full mx-auto mb-3 flex items-center justify-center"
-                                                    >
-                                                        <Heart class="w-8 h-8 text-white" />
-                                                    </div>
-                                                    <h3 class="text-lg font-bold mb-1">Thanh & Thu</h3>
-                                                    <p class="text-sm opacity-90 mb-4">Wedding Invitation</p>
-                                                    <div class="space-y-2">
-                                                        <div class="h-1.5 bg-white/30 rounded w-20 mx-auto" />
-                                                        <div class="h-1.5 bg-white/30 rounded w-16 mx-auto" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Mobile decorative elements -->
-                                            <div class="absolute top-3 left-3 w-4 h-4 bg-white/10 rounded-full" />
-                                            <div class="absolute bottom-3 right-3 w-3 h-3 bg-white/10 rounded-full" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center mt-4">
-                                <span class="text-sm font-semibold text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
-                                    Mobile View
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- View Template Button -->
-                <div
-                    v-motion
-                    class="text-center mt-12"
-                    :initial="{ opacity: 0, y: 30 }"
-                    :visible-once="{ opacity: 1, y: 0, transition: { duration: 800, delay: 600 } }"
+                <!-- Tabs List (replaces toggle switch) -->
+                <TabsList
+                    v-motion-w-pop-once
+                    :delay="200"
+                    class="p-1 mb-4 bg-white border border-gray-200 rounded-full shadow-lg"
                 >
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        class="border-2 border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white px-8 py-4 rounded-full font-semibold transition-all duration-300"
-                        @click="viewTemplate"
+                    <TabsTrigger
+                        v-for="(tab, index) in Object.values(previewTabs)"
+                        :key="index"
+                        :value="tab.value"
+                        class="px-4 py-2 rounded-full transition-all duration-500 text-gray-500 hover:text-pink-500 data-[state=active]:bg-pink-500 data-[state=active]:text-white"
                     >
-                        Xem mẫu thiệp đầy đủ
-                    </Button>
-                </div>
+                        <div class="flex items-center space-x-2">
+                            <component :is="tab.icon" :size="16" />
+                            <span class="text-sm font-medium">{{ tab.label }}</span>
+                        </div>
+                    </TabsTrigger>
+                </TabsList>
+
+                <!-- Desktop Tab Content -->
+                <TabsContent
+                    ref="desktopTabContent"
+                    :value="previewTabs.desktop.value"
+                    class="flex justify-center w-full max-w-6xl"
+                >
+                    <div
+                        v-motion-w-fade-up
+                        class="w-full bg-gray-800 rounded-lg shadow-2xl p-[--desktop-preview-padding]"
+                    >
+                        <!-- Browser Chrome -->
+                        <div class="flex items-center mb-3 space-x-2">
+                            <div class="w-3 h-3 bg-red-500 rounded-full" />
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full" />
+                            <div class="w-3 h-3 bg-green-500 rounded-full" />
+                            <div class="flex-1 h-6 ml-4 bg-gray-700 rounded" />
+                        </div>
+
+                        <!-- Desktop Preview Content with Interactive Iframe -->
+                        <AspectRatio :ratio="previewTabs.desktop.ratio">
+                            <iframe
+                                :src="data.ctaButton.linkProps?.href"
+                                class="border-0 w-[--desktop-preview-width] h-[--desktop-preview-height]"
+                                title="Mẫu thiệp đám cưới Thành Thư"
+                                loading="lazy"
+                                style="
+                                    -ms-transform: scale(var(--desktop-preview-scale, 1));
+                                    -moz-transform: scale(var(--desktop-preview-scale, 1));
+                                    -o-transform: scale(var(--desktop-preview-scale, 1));
+                                    -webkit-transform: scale(var(--desktop-preview-scale, 1));
+                                    transform: scale(var(--desktop-preview-scale, 1));
+                                    -ms-transform-origin: 0 0;
+                                    -moz-transform-origin: 0 0;
+                                    -o-transform-origin: 0 0;
+                                    -webkit-transform-origin: 0 0;
+                                    transform-origin: 0 0;
+                                "
+                            />
+                        </AspectRatio>
+                    </div>
+                </TabsContent>
+
+                <!-- Mobile Tab Content -->
+                <TabsContent
+                    ref="mobileTabContent"
+                    :value="previewTabs.mobile.value"
+                    class="flex justify-center w-full"
+                >
+                    <div
+                        v-motion-w-fade-up
+                        class="p-[--mobile-preview-padding] bg-gray-800 shadow-2xl rounded-[2.5rem] w-11/12 max-w-96"
+                    >
+                        <AspectRatio :ratio="previewTabs.mobile.ratio" class="bg-white rounded-[2rem] overflow-hidden">
+                            <!-- Mobile Preview Content with Interactive Iframe -->
+                            <iframe
+                                :src="data.ctaButton.linkProps?.href"
+                                class="w-[--mobile-preview-width] h-[--mobile-preview-height] border-0"
+                                title="Mẫu thiệp đám cưới Thành Thư"
+                                loading="lazy"
+                                style="
+                                    -ms-transform: scale(var(--mobile-preview-scale, 1));
+                                    -moz-transform: scale(var(--mobile-preview-scale, 1));
+                                    -o-transform: scale(var(--mobile-preview-scale, 1));
+                                    -webkit-transform: scale(var(--mobile-preview-scale, 1));
+                                    transform: scale(var(--mobile-preview-scale, 1));
+                                    -ms-transform-origin: 0 0;
+                                    -moz-transform-origin: 0 0;
+                                    -o-transform-origin: 0 0;
+                                    -webkit-transform-origin: 0 0;
+                                    transform-origin: 0 0;
+                                "
+                            />
+                        </AspectRatio>
+                    </div>
+                </TabsContent>
+            </Tabs>
+
+            <!-- View Template Button -->
+            <div v-motion-w-fade-up-once :delay="200" class="mt-12 text-center">
+                <HomeButton type="tertiary" v-bind="data.ctaButton" />
             </div>
-        </div>
-    </section>
+        </WebContainer>
+    </WebSection>
 </template>
 
 <script setup lang="ts">
-import { Button } from "@/components/ui/button";
-import { Heart, Monitor, Smartphone } from "lucide-vue-next";
+import { Monitor, Smartphone } from "lucide-vue-next";
+import { pxToRem, roundToPrecision } from "@/utils";
 import type { LandingShowcaseData } from "@/components/wedding/types";
 
 interface Props {
     data: LandingShowcaseData;
 }
 
-const props = defineProps<Props>();
+const { data } = defineProps<Props>();
 
-// Reactive view state
-const currentView = ref<"desktop" | "mobile">("desktop");
+const showcaseRef = useTemplateRef("showcaseRef");
+const desktopTabContentRef = useTemplateRef("desktopTabContent");
+const mobileTabContentRef = useTemplateRef("mobileTabContent");
 
-// Set default view based on screen size
-onMounted(() => {
-    const isMobile = window.innerWidth < 768;
-    currentView.value = isMobile ? "mobile" : "desktop";
-});
+const MOBILE_BREAKPOINT = 768;
 
-const viewTemplate = () => {
-    window.open(props.data.templateUrl, "_blank");
+const previewTabs = {
+    desktop: { value: "desktop", label: "Desktop", icon: Monitor, width: 1024, ratio: 16 / 9, padding: 12 },
+    mobile: { value: "mobile", label: "Mobile", icon: Smartphone, width: 425, ratio: 9 / 16, padding: 8 },
+} as const;
+type PreviewTabValue = (typeof previewTabs)[keyof typeof previewTabs]["value"];
+
+const getCssVariables = () => {
+    const desktopPreviewPadding = pxToRem(previewTabs.desktop.padding);
+    const desktopPreviewWidth = pxToRem(previewTabs.desktop.width);
+    const desktopPreviewHeight = pxToRem(previewTabs.desktop.width / previewTabs.desktop.ratio);
+    const mobilePreviewPadding = pxToRem(previewTabs.mobile.padding);
+    const mobilePreviewWidth = pxToRem(previewTabs.mobile.width);
+    const mobilePreviewHeight = pxToRem(previewTabs.mobile.width / previewTabs.mobile.ratio);
+
+    return `--desktop-preview-padding: ${desktopPreviewPadding};--desktop-preview-width: ${desktopPreviewWidth};--desktop-preview-height: ${desktopPreviewHeight};--mobile-preview-padding: ${mobilePreviewPadding};--mobile-preview-width: ${mobilePreviewWidth};--mobile-preview-height: ${mobilePreviewHeight};`;
 };
+
+const defaultView = ref<PreviewTabValue>(previewTabs.desktop.value);
+const setDefaultView = () => {
+    const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+
+    if (isMobile) {
+        defaultView.value = previewTabs.mobile.value;
+    }
+};
+
+const resizePreview = () => {
+    const desktopTabContent: HTMLDivElement | null = desktopTabContentRef.value?.$el;
+    const mobileTabContent: HTMLDivElement | null = mobileTabContentRef.value?.$el;
+    const showcase: HTMLDivElement | null = showcaseRef.value?.$el;
+    if (!desktopTabContent || !mobileTabContent || !showcase) return;
+
+    const desktopPreviewWidth = desktopTabContent.offsetWidth - previewTabs.desktop.padding * 2;
+    const desktopPreviewScale = roundToPrecision(desktopPreviewWidth / previewTabs.desktop.width, 6);
+
+    const MOBILE_PARENT_MAX_WIDTH = 384;
+    const mobilePreviewParentWidth = mobileTabContent.offsetWidth * (11 / 12);
+    const mobilePreviewWidth =
+        Math.min(mobilePreviewParentWidth, MOBILE_PARENT_MAX_WIDTH) - previewTabs.mobile.padding * 2;
+    const mobilePreviewScale = roundToPrecision(mobilePreviewWidth / previewTabs.mobile.width, 6);
+
+    showcase.setAttribute(
+        "style",
+        `--desktop-preview-scale: ${desktopPreviewScale};--mobile-preview-scale: ${mobilePreviewScale}`
+    );
+};
+const debouncedResizePreview = useDebounceFn(resizePreview, 500, { maxWait: 1000 });
+
+onMounted(() => {
+    setDefaultView();
+
+    resizePreview();
+    window.addEventListener("resize", debouncedResizePreview);
+
+    onUnmounted(() => {
+        window.removeEventListener("resize", debouncedResizePreview);
+    });
+});
 </script>

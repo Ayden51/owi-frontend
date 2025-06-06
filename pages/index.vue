@@ -1,48 +1,45 @@
 <template>
     <div class="min-h-screen">
-        <!-- Header -->
-        <HomeHeader />
-
-        <!-- Main Content Container -->
-        <div class="container mx-auto">
-            <!-- Hero Section -->
+        <HomeHeader :data="headerData" />
+        <main>
             <HomeHero :data="heroData" />
-
-            <!-- Introduction Section -->
             <HomeIntroduction :data="introductionData" />
-
-            <!-- Showcase Section -->
             <HomeShowcase :data="showcaseData" />
-
-            <!-- Why Choose Us Section -->
             <HomeWhyChooseUs :data="whyChooseUsData" />
-
-            <!-- FAQ Section -->
             <HomeFAQ :data="faqData" />
-
-            <!-- Contact Section -->
-            <HomeContact :data="contactData" />
-
-            <!-- CTA Section -->
-            <HomeCTA />
-        </div>
-
-        <!-- Footer -->
-        <HomeFooter />
+            <HomeCTA :data="ctaData" />
+        </main>
+        <HomeFooter :data="footerData" />
     </div>
 </template>
 
 <script setup lang="ts">
+import {
+    SwatchBook,
+    Send,
+    PiggyBank,
+    MoveRight,
+    HouseWifi,
+    Clock,
+    UserRoundCheck,
+    Palette,
+    MessageCircleHeart,
+    ScanHeart,
+} from "lucide-vue-next";
+
 import type {
     LandingHeroData,
     LandingIntroductionData,
     LandingShowcaseData,
     LandingWhyChooseUsData,
     LandingFAQData,
-    LandingContactData,
+    LandingCtaData,
+    LandingNavItem,
+    LandingCtaButton,
+    LandingHeaderData,
+    LandingFooterData,
 } from "@/components/wedding/types";
 
-// SEO Meta
 useHead({
     title: "E-Wedding - Nền tảng tạo website đám cưới & thiệp cưới online miễn phí",
     meta: [
@@ -67,119 +64,210 @@ useHead({
     ],
 });
 
-// Hero Data
-const heroData: LandingHeroData = {
-    backgroundImage: "/images/landing/hero-background.jpg",
-    title: "NỀN TẢNG TẠO WEBSITE ĐÁM CƯỚI & THIỆP CƯỚI ONLINE MIỄN PHÍ",
-    subtitle: "Cho đám cưới trở nên độc đáo hơn theo cách riêng của bạn!",
-    primaryButtonText: "Liên hệ ngay",
-    secondaryButtonText: "WEBSITES ĐÃ TẠO",
+// Site Data
+const navMenu: LandingNavItem[] = [
+    {
+        text: "Giới thiệu",
+        to: "#introduction",
+    },
+    {
+        text: "Mẫu thiệp",
+        to: "#showcase",
+    },
+    {
+        text: "Ưu điểm",
+        to: "#benefits",
+    },
+    {
+        text: "FAQ",
+        to: "#faq",
+    },
+    {
+        text: "Liên hệ",
+        to: "#cta",
+    },
+];
+
+const ctaButton: LandingCtaButton = {
+    text: "Liên hệ ngay",
+    linkProps: {
+        href: "https://dub.sh/StudyCare-Zalo",
+        rel: "noopener noreferrer",
+    },
 };
 
-// Introduction Data
-const introductionData: LandingIntroductionData = {
-    title: "ĐẦY ĐỦ NHỮNG TÍNH NĂNG HIỆU ỨNG CHO MỘT ĐÁM CƯỚI NHƯ MƠ",
-    subtitle: "Với những công cụ cần thiết, giúp bạn quản lý mọi kế hoạch cho ngày trọng đại một cách thông minh hơn.",
+// Section Data
+const headerData = ref<LandingHeaderData>({
+    navMenu,
+    ctaButton: {
+        ...ctaButton,
+        btnProps: {
+            size: "default",
+        },
+    },
+});
+
+const footerData = ref<LandingFooterData>({
+    navMenu,
+    policiesNavMenu: [
+        {
+            text: "Hướng dẫn sử dụng",
+            to: "#",
+        },
+        {
+            text: "Điều khoản dịch vụ",
+            to: "#",
+        },
+        {
+            text: "Chính sách bảo mật",
+            to: "#",
+        },
+    ],
+});
+
+const heroData = ref<LandingHeroData>({
+    title: "Thiệp cưới online – Gửi yêu thương theo cách hiện đại",
+    badge: "E-Wedding",
+    subtitle: "Biến ngày cưới của bạn trở nên độc đáo theo cách riêng!",
+    ctaButton,
+    carouselImages: [
+        { src: "/images/hero/hero-1.jpg", alt: "Hình nền đám cưới" },
+        { src: "/images/hero/hero-2.jpg", alt: "Hình nền đám cưới" },
+        { src: "/images/hero/hero-3.jpg", alt: "Hình nền đám cưới" },
+        { src: "/images/hero/hero-4.jpg", alt: "Hình nền đám cưới" },
+        { src: "/images/hero/hero-5.jpg", alt: "Hình nền đám cưới" },
+        { src: "/images/hero/hero-6.jpg", alt: "Hình nền đám cưới" },
+        { src: "/images/hero/hero-7.jpg", alt: "Hình nền đám cưới" },
+    ],
+});
+
+const introductionData = ref<LandingIntroductionData>({
+    title: "Tất cả những gì bạn cần cho một đám cưới trong mơ",
+    subtitle:
+        "Dịch vụ trọn gói giúp bạn dễ dàng lên kế hoạch cho ngày trọng đại một cách dễ dàng, thông minh, tiện lợi.",
     features: [
         {
-            icon: "heart",
+            icon: SwatchBook,
             title: "Chọn mẫu thiệp",
-            description: "Đa dạng mẫu thiệp cưới và website được cập nhật liên tục",
+            description: "Kho mẫu thiệp cưới online đa dạng, dịch vụ trọn gói cá nhân hoá theo nhu cầu.",
         },
         {
-            icon: "send",
+            icon: Send,
             title: "Gửi thiệp online",
-            description: "Gửi thiệp cưới online đến từng khách mời",
+            description: "Gửi thiệp mời trực tuyến đến từng khách mời một cách nhanh chóng và tiện lợi.",
         },
         {
-            icon: "check",
-            title: "Xác nhận tham dự",
-            description: "Nhận phản hồi và xác nhận tham dự từ khách mời",
+            icon: PiggyBank,
+            title: "Nhận mừng cưới",
+            description: "Dễ dàng nhận quà mừng cưới và lời chúc từ khách mời thông qua website.",
         },
     ],
-};
+    ctaButton: {
+        ...ctaButton,
+        btnChildren: ["Bắt đầu ngay", h(MoveRight)],
+    },
+});
 
-// Showcase Data
-const showcaseData: LandingShowcaseData = {
-    title: "TẠI SAO NÊN TẠO WEBSITE ĐÁM CƯỚI",
+const showcaseData = ref<LandingShowcaseData>({
+    title: "Khám phá hàng trăm mẫu thiệp cưới online đẹp mắt & đa dạng",
     subtitle:
-        "Cho ngày cưới của bạn trở nên ấn tượng hơn, dễ dàng chuyển tiếp yêu cầu của bạn để đăng chia sẻ đến mọi người, và dễ sử dụng trong suốt quá trình được lưu giữ mãi theo thời gian.",
-    desktopPreviewImage: "/images/landing/desktop-preview.jpg",
-    mobilePreviewImage: "/images/landing/mobile-preview.jpg",
-    templateUrl: "/thanh-thu-wedding",
-};
+        "Lựa chọn từ hàng trăm mẫu thiệp cưới được thiết kế tinh tế, phù hợp với mọi phong cách và câu chuyện tình yêu. Từ phong cách hiện đại, tối giản đến truyền thống, cổ điển – tất cả đều có sẵn để bạn lựa chọn.",
+    ctaButton: {
+        text: "Xem mẫu thiệp đầy đủ",
+        type: "tertiary",
+        linkProps: {
+            href: "/thanh-thu-wedding",
+            rel: "noopener noreferrer",
+        },
+    },
+});
 
-// Why Choose Us Data
-const whyChooseUsData: LandingWhyChooseUsData = {
-    title: "TẠI SAO NÊN TẠO WEBSITE ĐÁM CƯỚI",
+const whyChooseUsData = ref<LandingWhyChooseUsData>({
+    title: "TẠI SAO NÊN TẠO WEBSITE THIỆP CƯỚI",
+    subtitle:
+        "Dịch vụ tạo website thiệp cưới trọn gói, giúp bạn tiết kiệm thời gian, gây ấn tượng với khách mời và lưu giữ trọn vẹn dấu ấn tình yêu.",
     benefits: [
         {
-            image: "website-free",
-            title: "CÓ NGAY WEBSITE MIỄN PHÍ CHỈ SAU 3 PHÚT NHẤC",
+            icon: HouseWifi,
+            title: "Báo hỷ dễ dàng",
             description:
-                "Chỉ cần có thể để đăng tạo ra một website đám cưới đẹp mắt cách thông minh, chúng tôi không cần phải có kiến thức về lập trình.",
+                "Không cần in ấn, bạn có thể gửi thiệp cưới online đến khách mời qua Zalo, Messenger, Email, ... chỉ với một đường link.",
         },
         {
-            image: "no-time-limit",
-            title: "KHÔNG GIỚI HẠN THỜI GIAN BẢO LƯU GIỮ MÃI MÃI",
+            icon: Clock,
+            title: "Tiết kiệm thời gian, chi phí",
             description:
-                "Giúp bạn lưu giữ những khoảnh khắc quý giá với cho ngày trọng đại, để thật tuyệt vời khi bạn có thể nhìn lại và nhớ về nó như chỉ mới ngày hôm qua.",
+                "Dịch vụ thiết kế, xây dựng website trọn gói, đảm nhiệm toàn bộ quy trình, giúp bạn an tâm dành trọn tâm ý cho ngày trọng đại.",
         },
         {
-            image: "easy-planning",
-            title: "CHO MỌI KẾ HOẠCH CƯỚI TRỞ NÊN DỄ DÀNG HÔN",
+            icon: UserRoundCheck,
+            title: "Tối ưu trải nghiệm",
             description:
-                "Cung cấp những công cụ hữu ích, giúp bạn quản lý mọi kế hoạch cho ngày trọng đại một cách thông minh hơn như: Chi tiết, việc cần làm, khách mời,...",
+                "Khách mời chỉ cần nhấp vào thiệp để xem đầy đủ thông tin lễ cưới, hình ảnh, bản đồ, thời gian và địa điểm một cách dễ dàng.",
         },
         {
-            image: "beautiful-interface",
-            title: "GIAO DIỆN ĐẸP - ĐA DẠNG VÀ THÂN THIỆN",
+            icon: Palette,
+            title: "Thiết kế cá nhân hoá",
             description:
-                "Với giao diện đẹp mắt và thân thiện với người dùng, website của bạn sẽ tạo ấn tượng mạnh mẽ với khách mời.",
+                "Kho giao diện phong phú, mẫu thiệp hiện đại, dễ dàng cá nhân hóa hoàn toàn theo sở thích và yêu cầu của bạn.",
         },
         {
-            image: "easy-sharing",
-            title: "DỄ DÀNG CHIA SẺ CÂU CHUYỆN",
+            icon: MessageCircleHeart,
+            title: "Câu chuyện ấn tượng",
             description:
-                "Chia sẻ câu chuyện tình yêu của bạn một cách dễ dàng và ấn tượng với khách mời thông qua website đám cưới.",
+                "Chia sẻ câu chuyện tình yêu của bạn một cách đầy ấn tượng với khách mời thông qua website thiệp cưới cá nhân hoá.",
         },
         {
-            image: "guest-wishes",
-            title: "NHẬN LỜI CHÚC PHÚC TỪ BẠN",
+            icon: ScanHeart,
+            title: "Lưu giữ kỷ niệm trọn đời",
             description:
-                "Nhận những lời chúc phúc ý nghĩa từ bạn bè và người thân một cách dễ dàng thông qua website đám cưới.",
+                "Website không chỉ là lời mời mà còn là nơi lưu giữ những kỷ niệm đặc biệt của bạn để cùng nhau nhìn lại mãi về sau.",
         },
     ],
-};
+    ctaButton,
+});
 
-// FAQ Data
-const faqData: LandingFAQData = {
-    title: "NỚI TRẢ LỜI TẤT CẢ NHỮNG VƯỚNG MẮC CỦA BẠN",
-    items: [
+const faqData = ref<LandingFAQData>({
+    title: "Giải đáp mọi thắc mắc của bạn",
+    subtitle: "Nếu bạn còn bất kỳ câu hỏi nào, đừng ngần ngại liên hệ với chúng tôi để được hỗ trợ nhanh chóng!",
+    faqs: [
         {
-            question: "Website đám cưới là gì?",
-            answer: "Website đám cưới là một trang web cá nhân được tạo riêng cho đám cưới của bạn, chứa đựng thông tin về cặp đôi, lịch trình sự kiện, album ảnh, và cho phép khách mời xác nhận tham dự cũng như gửi lời chúc.",
+            question: "Tôi không rành công nghệ, có tự tạo website thiệp cưới được không?",
+            answer: [
+                "Hoàn toàn có thể! Dịch vụ của chúng tôi là ",
+                h("strong", "trọn gói"),
+                " – bạn chỉ cần cung cấp thông tin, chọn mẫu thiệp yêu thích, và có thể yêu cầu thêm các thay đổi cá nhân hoá nếu có. Chúng tôi sẽ đảm nhiệm toàn bộ quy trình thiết kế và triển khai website thiệp cưới cho bạn.",
+            ],
         },
         {
-            question: "Khi nào nên tạo website đám cưới?",
-            answer: "Bạn nên tạo website đám cưới ngay sau khi đã xác định được ngày cưới và địa điểm tổ chức, thường là 2-3 tháng trước ngày cưới để có thời gian gửi link cho khách mời.",
+            question: "Website thiệp cưới bao gồm những nội dung gì?",
+            answer: "Website thiệp cưới sẽ hiển thị đầy đủ các thông tin về ngày trọng đại của bạn, bao gồm cả thời gian - địa điểm lễ cưới, ảnh cưới, bản đồ chỉ đường, thông tin mừng cưới, … và bất kỳ thông tin nào khác mà bạn mong muốn.",
         },
         {
-            question: "Ý nghĩa của việc tạo website đám cưới là gì?",
-            answer: "Website đám cưới giúp bạn chia sẻ câu chuyện tình yêu, thông tin sự kiện một cách chuyên nghiệp, quản lý danh sách khách mời hiệu quả, và tạo ra một kỷ niệm đẹp có thể lưu giữ mãi mãi.",
+            question: "Tôi có thể gửi thiệp cưới online bằng cách nào?",
+            answer: [
+                "Bạn sẽ nhận được một đường link website có định dạng ",
+                h("strong", "https://wedding.ctpg.vn/<tên-miền-tùy-chọn>/"),
+                " và ",
+                h("strong", "mã QR"),
+                " tương ứng. Bạn có thể chia sẻ link hoặc QR này đến khách mời qua bất kỳ nền tảng bào bạn mong muốn như: Zalo, Messenger, Email, SMS,… một cách nhanh chóng và tiện lợi.",
+            ],
         },
         {
-            question: "Đặt tên miền website đám cưới như thế nào cho đúng?",
-            answer: 'Bạn có thể đặt tên miền theo tên của cặp đôi như "thanh-thu-wedding.ewedding.info" hoặc kết hợp tên với ngày cưới. Chúng tôi sẽ hỗ trợ bạn tạo tên miền phù hợp và dễ nhớ.',
+            question: "Website thiệp cưới có thời hạn sử dụng bao lâu?",
+            answer: [
+                "Website của bạn được lưu giữ ",
+                h("strong", "trọn đời"),
+                ". Chúng tôi hỗ trợ duy trì, cập nhật và quản lý thông tin kể cả sau lễ cưới. Nếu bạn có nhu cầu lưu trữ riêng, chúng tôi cũng sẵn sàng cung cấp source code để bạn bảo quản vĩnh viễn.",
+            ],
         },
     ],
-};
+    ctaButton,
+});
 
-// Contact Data
-const contactData: LandingContactData = {
-    title: "LIÊN HỆ VỚI BỊ ĐỂ ĐƯỢC HỖ TRỢ!",
-    subtitle: "Để được hỗ trợ nhanh hơn, vui lòng liên hệ với chúng tôi qua Messenger hoặc Zalo.",
-    messengerUrl: "https://dub.sh/StudyCare-Zalo",
-    zaloUrl: "https://dub.sh/StudyCare-Zalo",
-};
+const ctaData = ref<LandingCtaData>({
+    title: "Sẵn sàng tạo website thiệp cưới của riêng bạn?",
+    subtitle: "Bắt đầu ngay hôm nay để tạo nên một website thiệp cưới thật độc đáo và ấn tượng cho ngày trọng đại!",
+    ctaButton,
+});
 </script>

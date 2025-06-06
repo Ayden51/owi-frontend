@@ -1,10 +1,18 @@
+import type { VNodeArrayChildren, AnchorHTMLAttributes } from "vue";
 import type { LucideIcon } from "lucide-vue-next";
-import type { NuxtPicture } from "#components";
+import type { NuxtPicture, NuxtLink } from "#components";
+import type { Button } from "@/components/ui/button";
 
 export type NuxtPictureProps = InstanceType<typeof NuxtPicture>["$props"];
+export type NuxtLinkProps = InstanceType<typeof NuxtLink>["$props"];
+export type ButtonProps = InstanceType<typeof Button>["$props"];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type RawChildren = string | number | boolean | VNode | VNodeArrayChildren | (() => any);
 
-export interface InvitationData {
-    title?: string;
+export interface TemplateASectionTitle {
+    title?: string | null;
+}
+export interface InvitationData extends TemplateASectionTitle {
     introText?: string;
     groom: {
         sideLabel?: string;
@@ -23,9 +31,8 @@ export interface InvitationData {
     finalText?: string;
 }
 
-export interface SaveTheDateData {
+export interface SaveTheDateData extends TemplateASectionTitle {
     heroImage?: string;
-    sectionTitle?: string;
     introText1?: string;
     introText2?: string;
     brideName?: string;
@@ -35,9 +42,8 @@ export interface SaveTheDateData {
     outroText?: string;
 }
 
-export interface MessageData {
+export interface MessageData extends TemplateASectionTitle {
     topDecorationImageUrl?: string;
-    title?: string;
     paragraph1?: string;
     paragraph2?: string;
 }
@@ -55,8 +61,7 @@ export interface MapDetail {
     embedUrl?: string | null;
     logo?: NuxtPictureProps | null;
 }
-export interface EventDetailsData {
-    title?: string | null;
+export interface EventDetailsData extends TemplateASectionTitle {
     groomEvent?: EventDetail | null;
     brideEvent?: EventDetail | null;
     groomMap?: MapDetail | null;
@@ -75,14 +80,12 @@ export interface GiftPersonDetail {
     accountName?: string;
     qrCodeUrl?: string;
 }
-export interface GiftInfoData {
-    title?: string;
+export interface GiftInfoData extends TemplateASectionTitle {
     groom: GiftPersonDetail;
     bride: GiftPersonDetail;
 }
 
-export interface GalleryData {
-    title?: string;
+export interface GalleryData extends TemplateASectionTitle {
     images: NuxtPictureProps[];
 }
 
@@ -94,58 +97,69 @@ export interface ThankYouData {
 }
 
 // Landing page types
-export interface LandingFeatureCard {
-    icon: string;
-    title: string;
-    description: string;
+export interface LandingNavItem extends NuxtLinkProps {
+    text: string;
 }
 
-export interface LandingBenefitCard {
-    image: string;
+export interface LandingCtaButton {
+    text: string;
+    type?: "primary" | "secondary" | "tertiary";
+    btnChildren?: RawChildren;
+    btnProps?: ButtonProps;
+    linkProps?: AnchorHTMLAttributes;
+}
+
+export interface LandingHeaderData {
+    navMenu: LandingNavItem[];
+    ctaButton: LandingCtaButton;
+}
+
+export interface LandingFooterData {
+    navMenu: LandingNavItem[];
+    policiesNavMenu: LandingNavItem[];
+}
+
+export interface LandingSectionTitle {
+    title: string;
+    subtitle: string;
+}
+
+export interface LandingCard {
+    icon: LucideIcon;
     title: string;
     description: string;
 }
 
 export interface LandingFAQItem {
     question: string;
-    answer: string;
+    answer: RawChildren;
 }
 
-export interface LandingHeroData {
-    backgroundImage: string;
-    title: string;
-    subtitle: string;
-    primaryButtonText: string;
-    secondaryButtonText: string;
+export interface LandingHeroData extends LandingSectionTitle {
+    badge: string;
+    ctaButton: LandingCtaButton;
+    carouselImages: NuxtPictureProps[];
 }
 
-export interface LandingIntroductionData {
-    title: string;
-    subtitle: string;
-    features: LandingFeatureCard[];
+export interface LandingIntroductionData extends LandingSectionTitle {
+    features: LandingCard[];
+    ctaButton: LandingCtaButton;
 }
 
-export interface LandingShowcaseData {
-    title: string;
-    subtitle: string;
-    desktopPreviewImage: string;
-    mobilePreviewImage: string;
-    templateUrl: string;
+export interface LandingShowcaseData extends LandingSectionTitle {
+    ctaButton: LandingCtaButton;
 }
 
-export interface LandingWhyChooseUsData {
-    title: string;
-    benefits: LandingBenefitCard[];
+export interface LandingWhyChooseUsData extends LandingSectionTitle {
+    benefits: LandingCard[];
+    ctaButton: LandingCtaButton;
 }
 
-export interface LandingFAQData {
-    title: string;
-    items: LandingFAQItem[];
+export interface LandingFAQData extends LandingSectionTitle {
+    faqs: LandingFAQItem[];
+    ctaButton: LandingCtaButton;
 }
 
-export interface LandingContactData {
-    title: string;
-    subtitle: string;
-    messengerUrl: string;
-    zaloUrl: string;
+export interface LandingCtaData extends LandingSectionTitle {
+    ctaButton: LandingCtaButton;
 }

@@ -1,80 +1,53 @@
 <template>
-    <section id="faq" class="py-20 bg-gradient-to-b from-white to-pink-50">
-        <div class="container mx-auto px-4">
-            <!-- Section Header -->
-            <div
-                v-motion
-                class="text-center mb-16"
-                :initial="{ opacity: 0, y: 30 }"
-                :visible-once="{ opacity: 1, y: 0, transition: { duration: 800 } }"
-            >
-                <h2 class="text-3xl md:text-5xl font-bold text-gray-800 mb-6">
-                    {{ data.title }}
-                </h2>
-            </div>
+    <WebSection id="faq" class="py-16 bg-white">
+        <WebContainer>
+            <HomeSectionTitle :title="data.title" :subtitle="data.subtitle" />
 
             <!-- FAQ Accordion -->
             <div class="max-w-4xl mx-auto">
-                <Accordion
-                    v-motion
-                    type="single"
-                    collapsible
-                    class="space-y-4"
-                    :initial="{ opacity: 0, y: 30 }"
-                    :visible-once="{ opacity: 1, y: 0, transition: { duration: 600, delay: 200 } }"
-                >
+                <Accordion type="single" collapsible class="space-y-4">
                     <AccordionItem
-                        v-for="(item, index) in data.items"
+                        v-for="(faq, index) in data.faqs"
                         :key="index"
-                        :value="`item-${index}`"
-                        class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
+                        v-motion-w-fade-up-once
+                        :delay="index * 200"
+                        :value="`faq-${index}`"
+                        class="border-none"
                     >
-                        <AccordionTrigger class="px-8 py-6 text-left hover:bg-gray-50 rounded-t-2xl">
-                            <span class="text-lg font-semibold text-gray-800 text-left">
-                                {{ item.question }}
-                            </span>
+                        <AccordionTrigger
+                            class="gap-2 px-8 py-6 text-lg font-semibold text-left text-gray-800 transition-colors duration-500 border-2 border-gray-100 hover:text-pink-500 rounded-2xl hover:border-pink-500"
+                        >
+                            {{ faq.question }}
+
+                            <template #icon>
+                                <ChevronDown :size="24" class="transition-transform duration-500 shrink-0" />
+                            </template>
                         </AccordionTrigger>
-                        <AccordionContent class="px-8 pb-6 text-gray-600 leading-relaxed">
-                            {{ item.answer }}
-                        </AccordionContent>
+
+                        <component
+                            :is="h(AccordionContent, { class: 'px-8 py-6 text-lg text-gray-800' }, () => faq.answer)"
+                        />
                     </AccordionItem>
                 </Accordion>
             </div>
 
             <!-- Bottom CTA -->
-            <div
-                v-motion
-                class="text-center mt-16"
-                :initial="{ opacity: 0, y: 30 }"
-                :visible-once="{ opacity: 1, y: 0, transition: { duration: 800, delay: 600 } }"
-            >
-                <p class="text-lg text-gray-700 mb-6">
-                    Vẫn còn thắc mắc? Đừng ngần ngại liên hệ với chúng tôi để được hỗ trợ!
-                </p>
-                <Button
-                    size="lg"
-                    class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                    @click="openZaloContact"
-                >
-                    Liên hệ ngay
-                </Button>
+            <div class="mt-16 text-center">
+                <HomeButton v-motion-w-pop-once v-bind="data.ctaButton" />
             </div>
-        </div>
-    </section>
+        </WebContainer>
+    </WebSection>
 </template>
 
 <script setup lang="ts">
-import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { h } from "vue";
+import { ChevronDown } from "lucide-vue-next";
+import { AccordionContent } from "@/components/ui/accordion";
 import type { LandingFAQData } from "@/components/wedding/types";
 
 interface Props {
     data: LandingFAQData;
 }
 
-defineProps<Props>();
-
-const openZaloContact = () => {
-    window.open("https://dub.sh/StudyCare-Zalo", "_blank");
-};
+const { data } = defineProps<Props>();
 </script>
