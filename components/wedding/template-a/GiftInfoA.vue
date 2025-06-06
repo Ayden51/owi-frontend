@@ -37,8 +37,8 @@ const defaultData: GiftInfoData = {
 const data = computed(() => ({
     ...defaultData,
     ...props.data,
-    groom: { ...defaultData.groom, ...props.data?.groom },
-    bride: { ...defaultData.bride, ...props.data?.bride },
+    groom: processSubProperty(defaultData.groom!, props.data?.groom),
+    bride: processSubProperty(defaultData.bride!, props.data?.bride),
 }));
 </script>
 
@@ -48,6 +48,7 @@ const data = computed(() => ({
             <WeddingOrnament v-motion-w-fade-down-once width="128" class="mx-auto mb-2 fill-primary-dark" />
 
             <h2
+                v-if="data.title"
                 v-motion-w-fade-down-once
                 :delay="100"
                 class="mb-6 text-2xl font-semibold uppercase sm:text-3xl font-montserrat"
@@ -55,14 +56,16 @@ const data = computed(() => ({
                 {{ data.title }}
             </h2>
 
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
+            <div v-if="data.groom && data.bride" class="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-start">
                 <Dialog v-for="(side, index) in [data.groom, data.bride]" :key="index">
                     <div :key="index" v-motion-w-fade-right-once :delay="100 + index * 100" class="flex flex-col gap-4">
                         <Card class="w-full rounded-none bg-primary-light">
                             <CardContent class="p-2">
                                 <AspectRatioPicture
-                                    :ratio="{ ratio: 1 / 1 }"
-                                    :picture="{ src: side.imageUrl, alt: side.imageAlt ?? side.label, loading: 'lazy' }"
+                                    :src="side.imageUrl"
+                                    :alt="side.imageAlt ?? side.label"
+                                    loading="lazy"
+                                    :width="290.67"
                                 />
                             </CardContent>
                             <CardFooter class="justify-center p-2 pt-1 pb-3">

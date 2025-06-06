@@ -124,13 +124,12 @@ const sectionStyles = computed(() => {
                     <div v-motion-w-fade-up-once :delay="400" class="grid grid-cols-3 gap-2 mb-4 sm:gap-4">
                         <template v-for="(image, index) in data.images" :key="index">
                             <AspectRatioPicture
-                                :ratio="{ ratio: 3 / 4 }"
-                                :picture="{
-                                    src: image.src,
-                                    alt: image.alt || 'Couple Photo',
-                                    loading: 'eager',
-                                    preload: true,
-                                }"
+                                :ratio="3 / 4"
+                                :src="image.src"
+                                :alt="image.alt || 'Couple Photo'"
+                                loading="eager"
+                                :preload="true"
+                                :width="191.55"
                             />
                         </template>
                     </div>

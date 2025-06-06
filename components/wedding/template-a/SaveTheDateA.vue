@@ -8,7 +8,7 @@ const props = defineProps<{
 // Default data (for development/preview, API should provide real data)
 const defaultData: SaveTheDateData = {
     heroImage: "/images/gallery/save-the-date.jpg",
-    sectionTitle: "Save The Date",
+    title: "Save The Date",
     introText1: "PLEASE JOIN US FOR",
     introText2: "The wedding of",
     groomName: "Nguyễn Văn A",
@@ -27,7 +27,7 @@ const defaultData: SaveTheDateData = {
 const data = computed(() => ({
     ...defaultData,
     ...props.data,
-    date: { ...defaultData.date, ...props.data?.date },
+    date: processSubProperty(defaultData.date!, props.data?.date),
 }));
 
 const img = useImage();
@@ -43,32 +43,25 @@ const sectionStyles = computed(() => {
     <WebSection class="relative z-10 px-0 pt-0 text-center text-primary lg:px-0" :style="sectionStyles">
         <Motion is="div" v-motion-w-fade-up-once :delay="150">
             <h2 class="absolute z-20 w-full text-xl -translate-x-1/2 -top-10 font-josefin-sans left-1/2 sm:text-2xl">
-                {{ data.sectionTitle }}
+                {{ data.title }}
             </h2>
         </Motion>
 
-        <Motion is="div" v-motion-w-fade-up-once :delay="100">
-            <AspectRatioPicture
-                :ratio="{ ratio: 4 / 3 }"
-                :picture="{
-                    src: data.heroImage,
-                    alt: 'Hero Image',
-                    loading: 'lazy',
-                }"
-            >
-                <FloralDecoration
-                    corner="bottom-left"
-                    image="floral-2"
-                    class="w-36 rotate-0 translate-y-[40%] translate-x-2 sm:w-52"
-                    loading="lazy"
-                />
-                <FloralDecoration
-                    corner="bottom-right"
-                    image="floral-2"
-                    class="w-36 rotate-0 translate-y-[40%] -translate-x-2 sm:w-52"
-                    loading="lazy"
-                />
-            </AspectRatioPicture>
+        <Motion is="div" v-motion-w-fade-up-once :delay="100" class="relative">
+            <AspectRatioPicture :ratio="4 / 3" :src="data.heroImage" alt="Hero Image" loading="lazy" :width="768" />
+
+            <FloralDecoration
+                corner="bottom-left"
+                image="floral-2"
+                class="w-36 rotate-0 translate-y-[40%] translate-x-2 sm:w-52"
+                loading="lazy"
+            />
+            <FloralDecoration
+                corner="bottom-right"
+                image="floral-2"
+                class="w-36 rotate-0 translate-y-[40%] -translate-x-2 sm:w-52"
+                loading="lazy"
+            />
         </Motion>
 
         <div class="relative px-2 pt-8 pb-12">
@@ -82,7 +75,7 @@ const sectionStyles = computed(() => {
                     }}</span>
                 </p>
 
-                <div class="flex items-center justify-center gap-1 mb-2">
+                <div v-if="data.groomName && data.brideName" class="flex items-center justify-center gap-1 mb-2">
                     <template v-for="(content, index) in [data.groomName, 'icon', data.brideName]" :key="index">
                         <h2
                             v-if="content !== 'icon'"
@@ -105,6 +98,7 @@ const sectionStyles = computed(() => {
                 </div>
 
                 <p
+                    v-if="data.date"
                     v-motion-w-fade-down-once
                     :delay="450"
                     class="mb-1 text-sm font-semibold uppercase sm:text-lg font-montserrat text-primary-dark"
@@ -112,6 +106,7 @@ const sectionStyles = computed(() => {
                     {{ data.date.dayName }}
                 </p>
                 <div
+                    v-if="data.date"
                     class="grid items-center justify-center grid-cols-5 gap-4 mx-auto mb-6 font-semibold max-w-72 sm:max-w-lg font-montserrat text-primary-dark"
                 >
                     <span
