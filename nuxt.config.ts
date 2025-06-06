@@ -19,15 +19,15 @@ export default defineNuxtConfig({
     },
 
     modules: [
-      "@nuxt/eslint",
-      "@nuxt/fonts",
-      "@nuxt/image",
-      "@nuxt/test-utils",
-      "@nuxtjs/tailwindcss",
-      "shadcn-nuxt",
-      "@vueuse/motion/nuxt",
-      "nuxt-easy-lightbox",
-      "@vueuse/nuxt",
+        "@nuxt/eslint",
+        "@nuxt/fonts",
+        "@nuxt/image",
+        "@nuxt/test-utils",
+        "@nuxtjs/tailwindcss",
+        "shadcn-nuxt",
+        "@vueuse/motion/nuxt",
+        "nuxt-easy-lightbox",
+        "@vueuse/nuxt",
     ],
     components: {
         dirs: [
@@ -38,8 +38,11 @@ export default defineNuxtConfig({
         ],
     },
 
-    routeRules: {
-        "/**": { swr: true },
+    nitro: {
+        prerender: {
+            crawlLinks: true,
+            routes: ["/"],
+        },
     },
 
     shadcn: {
