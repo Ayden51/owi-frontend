@@ -1,33 +1,27 @@
 <template>
-    <AspectRatio v-bind="ratio">
-        <NuxtPicture
-            v-bind="reactiveOmit(picture, 'width', 'height')"
-            :width="imageDimensions.width"
-            :height="imageDimensions.height"
-        />
-        <slot />
-    </AspectRatio>
+    <NuxtPicture
+        v-bind="reactiveOmit(props, 'ratio', 'width')"
+        :width="imageComputedDimension.width"
+        :height="imageComputedDimension.height"
+    />
 </template>
 
 <script setup lang="ts">
-import type { AspectRatioProps } from "reka-ui";
 import { reactiveOmit } from "@vueuse/core";
 import type { NuxtPictureProps } from "@/components/wedding/types";
 
-interface Props {
-    ratio: AspectRatioProps;
-    picture: NuxtPictureProps;
+interface Props extends /* @vue-ignore */ Omit<NuxtPictureProps, "width" | "height"> {
+    ratio?: number;
+    width?: number;
 }
-const props = defineProps<Props>();
 
-const { ratio, picture } = props;
-
-const imageDimensions = computed(() => {
-    const imgRatio = ratio.ratio ?? 1;
-    const width = 1920;
-    return {
-        width,
-        height: width / imgRatio,
-    };
+const props = withDefaults(defineProps<Props>(), {
+    ratio: 1,
+    width: 1920,
 });
+
+const imageComputedDimension = computed(() => ({
+    width: props.width,
+    height: roundToPrecision(props.width / props.ratio),
+}));
 </script>
