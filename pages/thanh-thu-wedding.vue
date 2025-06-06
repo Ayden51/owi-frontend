@@ -1,5 +1,5 @@
 <template>
-    <main class="min-h-screen bg-green-950">
+    <main class="min-h-screen overflow-hidden bg-green-950">
         <InvitationIntroA :data="invitationData" />
         <SaveTheDateA :data="saveTheDateData" />
         <MessageA :data="messageData" />
