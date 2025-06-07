@@ -10,7 +10,7 @@ export const useLogoPreload = () => {
             link: [
                 {
                     rel: "preload",
-                    type: "image/svg+xml",
+                    as: "image",
                     href: logo,
                 },
             ],
