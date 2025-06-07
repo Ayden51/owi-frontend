@@ -40,28 +40,37 @@ import type {
     LandingFooterData,
 } from "@/components/wedding/types";
 
-useHead({
-    title: "E-Wedding - Nền tảng tạo website đám cưới & thiệp cưới online miễn phí",
-    meta: [
-        {
-            name: "description",
-            content:
-                "Tạo website đám cưới và thiệp cưới online miễn phí với E-Wedding. Dễ dàng quản lý khách mời, nhận quà cưới và chia sẻ khoảnh khắc đặc biệt của bạn.",
-        },
-        {
-            property: "og:title",
-            content: "E-Wedding - Nền tảng tạo website đám cưới & thiệp cưới online miễn phí",
-        },
-        {
-            property: "og:description",
-            content:
-                "Tạo website đám cưới và thiệp cưới online miễn phí với E-Wedding. Dễ dàng quản lý khách mời, nhận quà cưới và chia sẻ khoảnh khắc đặc biệt của bạn.",
-        },
-        {
-            property: "og:type",
-            content: "website",
-        },
-    ],
+// SEO Configuration using @nuxtjs/seo
+useSeoMeta({
+    title: "E-Wedding by CTPG - Nền tảng tạo website thiệp cưới online chuyên nghiệp",
+    description:
+        "Dịch vụ tạo website thiệp cưới online trọn gói. Kho giao diện thiệp cưới đẹp mắt, đa dạng, cá nhân hóa theo yêu cầu.",
+
+    // Open Graph
+    ogTitle: "E-Wedding by CTPG - Nền tảng tạo website thiệp cưới online chuyên nghiệp",
+    ogDescription:
+        "Dịch vụ tạo website thiệp cưới online trọn gói. Kho giao diện thiệp cưới đẹp mắt, đa dạng, cá nhân hóa theo yêu cầu.",
+    ogType: "website",
+    ogUrl: "https://wedding.ctpg.vn",
+    ogImage: "https://wedding.ctpg.vn/seo-thumbnail.png",
+    ogImageAlt: "E-Wedding - Nền tảng tạo website đám cưới online",
+    ogLocale: "vi_VN",
+    ogSiteName: "E-Wedding by CTPG",
+
+    // Twitter Card
+    twitterCard: "summary_large_image",
+    twitterTitle: "E-Wedding by CTPG - Nền tảng tạo website thiệp cưới online chuyên nghiệp",
+    twitterDescription:
+        "Dịch vụ tạo website thiệp cưới online trọn gói. Kho giao diện thiệp cưới đẹp mắt, đa dạng, cá nhân hóa theo yêu cầu.",
+    twitterImage: "https://wedding.ctpg.vn/seo-thumbnail.png",
+    twitterImageAlt: "E-Wedding - Nền tảng tạo website đám cưới online",
+
+    // Additional SEO
+    author: "E-Wedding by CTPG",
+    applicationName: "E-Wedding by CTPG",
+    generator: "NuxtJS",
+    referrer: "origin-when-cross-origin",
+    colorScheme: "light",
 });
 
 // Site Data
@@ -91,7 +100,7 @@ const navMenu: LandingNavItem[] = [
 const ctaButton: LandingCtaButton = {
     text: "Liên hệ ngay",
     linkProps: {
-        href: "https://dub.sh/StudyCare-Zalo",
+        href: "https://zalo.me/0938580239",
         rel: "noopener noreferrer",
     },
 };

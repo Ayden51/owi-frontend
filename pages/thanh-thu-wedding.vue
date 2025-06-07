@@ -21,6 +21,24 @@ import type {
     ThankYouData,
 } from "@/components/wedding/types";
 
+// Block search engine indexing for this private wedding invitation
+useSeoMeta({
+    title: "Thiệp cưới Thành & Thư",
+    description: "Thiệp mời đám cưới của Nguyễn Công Thành và Phạm Thị Anh Thư",
+    robots: "noindex, nofollow",
+
+    // Prevent social media sharing
+    ogTitle: "Thiệp cưới riêng tư",
+    ogDescription: "Thiệp mời đám cưới riêng tư",
+    ogType: "website",
+
+    // Additional privacy protection
+    referrer: "no-referrer",
+});
+
+// Use the robots rule composable for additional protection
+useRobotsRule(false);
+
 const invitationData = ref<InvitationData>({
     groom: {
         name: "Nguyễn Công Thành",
