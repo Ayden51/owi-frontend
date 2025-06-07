@@ -25,6 +25,9 @@ import {
     Palette,
     MessageCircleHeart,
     ScanHeart,
+    MapPin,
+    Mail,
+    Phone,
 } from "lucide-vue-next";
 
 import type {
@@ -130,6 +133,31 @@ const footerData = ref<LandingFooterData>({
         {
             text: "Chính sách bảo mật",
             to: "#",
+        },
+    ],
+    contactInfos: [
+        {
+            icon: MapPin,
+            label: "Địa chỉ",
+            value: "72/53 Nguyễn Văn Thương, Phường 25, Quận Bình Thạnh, TP.HCM",
+        },
+        {
+            icon: Mail,
+            label: "Email",
+            value: "cskh@ctpg.vn",
+            href: "mailto:cskh@ctpg.vn",
+        },
+        {
+            icon: Phone,
+            label: "Hotline 1",
+            value: "(028).353.66566",
+            href: "tel:02835366566",
+        },
+        {
+            icon: Phone,
+            label: "Hotline 2",
+            value: "(028).223.66566",
+            href: "tel:02822366566",
         },
     ],
 });

@@ -114,9 +114,17 @@ export interface LandingHeaderData {
     ctaButton: LandingCtaButton;
 }
 
+export interface ContactInfo {
+    icon: LucideIcon;
+    label: string;
+    value: string;
+    href?: string;
+}
+
 export interface LandingFooterData {
     navMenu: LandingNavItem[];
     policiesNavMenu: LandingNavItem[];
+    contactInfos: ContactInfo[];
 }
 
 export interface LandingSectionTitle {

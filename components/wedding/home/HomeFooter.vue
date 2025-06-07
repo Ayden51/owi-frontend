@@ -14,6 +14,32 @@
                         Nền tảng tạo thiệp cưới online miễn phí, giúp bạn hiện thực hóa lời mời cưới vừa tiện lợi vừa
                         tinh tế.
                     </p>
+
+                    <!-- Contact Information -->
+                    <div class="mt-6 space-y-3">
+                        <h3 class="text-lg font-semibold text-pink-500">Thông tin liên hệ</h3>
+
+                        <div
+                            v-for="(contactInfo, index) in data.contactInfos"
+                            :key="index"
+                            class="flex items-center gap-3"
+                        >
+                            <component :is="contactInfo.icon" :size="16" class="text-pink-500" />
+                            <div>
+                                <span class="font-medium text-gray-700">{{ contactInfo.label }}: </span>
+                                <a
+                                    v-if="contactInfo.href"
+                                    :href="contactInfo.href"
+                                    class="text-gray-500 transition-colors duration-200 hover:text-pink-500 hover:underline"
+                                >
+                                    {{ contactInfo.value }}
+                                </a>
+                                <span v-else class="text-gray-500">
+                                    {{ contactInfo.value }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Footer Navs -->
@@ -46,13 +72,13 @@
 import { reactiveOmit } from "@vueuse/core";
 import type { LandingFooterData } from "@/components/wedding/types";
 
-const props = defineProps<{
+const { data } = defineProps<{
     data: LandingFooterData;
 }>();
 
-const { navMenu, policiesNavMenu } = props.data;
-const footerNavs = [
+const { navMenu, policiesNavMenu } = data;
+const footerNavs = computed(() => [
     { title: "Liên kết nhanh", navMenu },
     { title: "Hỗ trợ", navMenu: policiesNavMenu },
-];
+]);
 </script>
